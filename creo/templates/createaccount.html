@@ -1,0 +1,16 @@
+{%extends "base.html"%}
+{%block contents%}
+        <div class="jumbotron">
+            {%if registered%}
+                <h3>Account Created !</h3>
+            {%else%}
+            <form enctype="multipart/form-data" method="POST">
+                <h3>Create Account</h3>
+                {{user_form.as_ul}}
+                {{profile_form.as_ul}}
+                {%csrf_token%}
+                <input type="submit" class="btn btn-primary" value = "Create">
+            </form>
+            {%endif%}
+        </div>
+{% endblock %}
