@@ -8,9 +8,7 @@ See Directory Tree Structure
 
 .
 ├── creo
-
 │   ├── admin.py
-
 │   ├── apps.py
 
 │   ├── forms.py
