@@ -1,0 +1,27 @@
+{% extends "images/base.html" %}
+
+{% block content %}
+
+<h1>{{ submission }}</h1>
+<div class="image_container">
+<img src="{{ submission.content.url }}" style="width:100%;height:auto;">
+</div>
+
+{% if error_message %}<p><strong>{{ error_message }}</strong></p>{% endif %}
+
+<label>Your comment</label>
+<form action="{% url 'images:comment' submission.id %}" method="post">
+{% csrf_token %}
+{{ form }}
+<br>
+<input type="submit" value="Submit">
+</form> 
+
+
+<!--<ul>
+{% for comment in submission.comment_set.all %}
+<li>{{ comment.pub_date }}: {{ comment.comment_text }}</li>
+{% endfor %}
+</ul>
+-->
+{% endblock %}

@@ -1,25 +1,22 @@
 from django.shortcuts import render
 from django.template.loader import get_template
 from django.http import HttpResponse,HttpResponseRedirect
-from creo.models import UserProfileInfo
+from creo.models import UserProfileInfo,PostSubmission
 from django.contrib import messages
 from creo.forms import UserForm,UserProfileInfoForm
+from django.views.generic import DeleteView,CreateView
+from django.contrib.auth.models import User
+from django import forms
 #for login and logout
 from django.contrib.auth import authenticate,login,logout
 from django.contrib.auth.decorators import login_required
-from django.urls import reverse 
-
+from django.urls import reverse,reverse_lazy
 
 # Create your views here.
 
 def index(request):
     return render(request,"index.html")
 
-@login_required
-def home(request):
-       return render(request,"home.html")
-
-    
 def signin(request):
     if request.method == "POST":
         username = request.POST.get('Username')
@@ -28,11 +25,13 @@ def signin(request):
         if user:
             if user.is_active:
                 login(request,user)
-                return(HttpResponseRedirect(reverse('home')))
+                return(HttpResponseRedirect(reverse('homecreo')))
             else:
                 return(HttpResponse("ACCOUNT IS NOT ACTIVE"))
-        else : 
-            return HttpResponse("InValid Login Details")
+        else :
+            messages.success(request,"Sorry ,that login was invalid. Please try again.")
+            return(HttpResponseRedirect(reverse('signin')))
+
     else:
         return render(request,"signin.html")
 
@@ -41,21 +40,26 @@ def user_logout(request):
     logout(request)
     return(HttpResponseRedirect(reverse('index')))
 
-#@login_required
+@login_required
 def profile(request):
     if request.user.is_authenticated:
-        email = request.user.email
-        alluser = {"alluser":UserProfileInfo.objects.get(user=request.user),'email':email}
+        u = request.user
+        alluser = {"alluser":UserProfileInfo.objects.get(user=request.user),'u':u}
         return render(request,"profile.html",context=alluser)
     else:
         return HttpResponse("Please Login")
 
 def all_user(request):
     alluser = {"user_list":UserProfileInfo.objects.all}
-    return render(request,"user.html",context=alluser)
+    if not alluser:
+        return render(request,"user.html")
+    else:
+        return render(request,"user.html",context=alluser)
 
 def create_user(request):
     registered  = False
+    user_form = UserForm()
+    profile_form = UserProfileInfoForm()
     #accountcreateform = forms.AccountCreateForm()
     if request.method =="POST":
         user_form = UserForm(request.POST)
@@ -71,12 +75,28 @@ def create_user(request):
             profile.save()
             registered = True
             return index(request)
-        else:
-            messages.error(request, "Error!")
-    else:
-        user_form = UserForm()
-        profile_form = UserProfileInfoForm()
-        value = {"user_form":user_form,"profile_form":profile_form,"registered":registered}
+    value = {"user_form":user_form,"profile_form":profile_form,"registered":registered}
     return render(request,"createaccount.html",context = value)
 
+class UserDeleteView(DeleteView):
+    model = User
+    success_url = reverse_lazy("index")
+    #logout(request)
+class PostFormView(CreateView):
+    fields=('title','description','content')
+    model = PostSubmission
+    success_url = reverse_lazy("index")
+    def form_valid(self, form):
+        form.instance.publisher = self.request.user
+        return super().form_valid(form)
 
+def homecreo(request):
+    latest_submissions = PostSubmission.objects.order_by('-pub_date')[:5]
+    # template = loader.get_template('images/index.html')
+    context = { 'latest_submissions': latest_submissions }
+    return render(request, 'allindex.html', context)
+
+def detailpost(request, submission_id):
+    submission = get_object_or_404(Submission, pk=submission_id)
+    #form = CommentForm()
+    return render(request, 'detail.html', {'submission': submission})#, 'form': form})

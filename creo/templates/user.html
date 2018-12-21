@@ -1,6 +1,5 @@
 {%extends "base.html"%}
 {%block contents%}
-
         <div class="jumbotron">
             {%if user_list%}
                 {%for user in user_list%}
@@ -9,9 +8,7 @@
                 <ul>                
                     <li><h5><a href={{user.portfolio_site}}>Instagram</a></h5></li>
                     <li>{{user.email}}</li>
-
                 </ul>
-                    
                 {%endfor%}
             {%else%}
             --NO USERS--           

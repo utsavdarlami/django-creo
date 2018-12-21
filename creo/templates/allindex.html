@@ -1,0 +1,20 @@
+{% extends "base.html" %}
+
+{% block contents %}
+<div class="jumbotron">
+{% if latest_submissions %}
+{% for submission in latest_submissions %}
+
+<div class="row">
+      <h3>{{submission.title}}</h3>
+      <h5>Date : {{submission.pub_date}}</h5>
+      <img src="{{ submission.content.url }}/" width="400" padding="5">
+      <h5>Caption : {{submission.description}}</h5>
+</div>
+{% endfor %}
+
+{% else %}
+<p>No submissions are available.</p>
+</div>
+{% endif %}
+{% endblock %}
