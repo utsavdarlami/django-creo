@@ -5,8 +5,7 @@ creo verse , image,video and art sharing platform
 not completed 
 
 See Directory Tree Structure
-...bash
-.
+```bash
 ├── creo
 │   ├── admin.py
 │   ├── apps.py
@@ -70,7 +69,7 @@ See Directory Tree Structure
     ├── home.html
     ├── index.html
     └── signin.html
-...
+```
 
 
 
