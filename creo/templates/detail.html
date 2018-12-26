@@ -1,14 +1,22 @@
-{% extends "images/base.html" %}
+{% extends "base.html" %}
 
-{% block content %}
+{% block contents %}
 
-<h1>{{ submission }}</h1>
-<div class="image_container">
-<img src="{{ submission.content.url }}" style="width:100%;height:auto;">
+<div class="jumbotron">
+
+    <h3>{{submission.title}}</h3>
+    <h5>Date : {{submission.pub_date}}</h5>
+    <a href="{%url 'artistdetail' submission.publisher %}"><h5>By :  {{submission.publisher}}</h5></a>
+    <img src="{{ submission.content.url }}" style="width:50%;height:auto;">
+    <h5>{{submission.description}}</h5>
+
 </div>
 
 {% if error_message %}<p><strong>{{ error_message }}</strong></p>{% endif %}
 
+
+{% endblock %}
+<!--
 <label>Your comment</label>
 <form action="{% url 'images:comment' submission.id %}" method="post">
 {% csrf_token %}
@@ -16,7 +24,7 @@
 <br>
 <input type="submit" value="Submit">
 </form> 
-
+-->
 
 <!--<ul>
 {% for comment in submission.comment_set.all %}
@@ -24,4 +32,3 @@
 {% endfor %}
 </ul>
 -->
-{% endblock %}
