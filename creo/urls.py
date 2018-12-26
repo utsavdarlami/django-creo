@@ -8,5 +8,7 @@ urlpatterns = [
     path('',views.homecreo,name="homecreo"),
     path('delete/<int:pk>',views.UserDeleteView.as_view(),name="deleteconfirm"),
     path('post/',views.PostFormView.as_view(),name="post"),
+    path('photos/<int:id>/',views.detailpost,name="detailpost"),
+
 
 ]

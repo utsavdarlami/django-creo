@@ -1,0 +1,34 @@
+{% extends "base.html" %}
+
+{% block contents %}
+
+<div class="jumbotron">
+
+    <h3>{{submission.title}}</h3>
+    <h5>Date : {{submission.pub_date}}</h5>
+    <a href="{%url 'artistdetail' submission.publisher %}"><h5>By :  {{submission.publisher}}</h5></a>
+    <img src="{{ submission.content.url }}" style="width:50%;height:auto;">
+    <h5>{{submission.description}}</h5>
+
+</div>
+
+{% if error_message %}<p><strong>{{ error_message }}</strong></p>{% endif %}
+
+
+{% endblock %}
+<!--
+<label>Your comment</label>
+<form action="{% url 'images:comment' submission.id %}" method="post">
+{% csrf_token %}
+{{ form }}
+<br>
+<input type="submit" value="Submit">
+</form> 
+-->
+
+<!--<ul>
+{% for comment in submission.comment_set.all %}
+<li>{{ comment.pub_date }}: {{ comment.comment_text }}</li>
+{% endfor %}
+</ul>
+-->

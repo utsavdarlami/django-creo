@@ -96,7 +96,7 @@ def homecreo(request):
     context = { 'latest_submissions': latest_submissions }
     return render(request, 'allindex.html', context)
 
-def detailpost(request, submission_id):
-    submission = get_object_or_404(Submission, pk=submission_id)
+def detailpost(request,id):
+    submission = get_object_or_404(PostSubmission,pk=id)
     #form = CommentForm()
     return render(request, 'detail.html', {'submission': submission})#, 'form': form})
