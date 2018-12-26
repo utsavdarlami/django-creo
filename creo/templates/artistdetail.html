@@ -1,0 +1,26 @@
+{%extends "base.html"%}
+{%block contents%}
+
+        <div class="jumbotron">
+           <!-- {%if alluser%}
+                <h6>{{alluser.user}}</h6>
+                <img src="{{alluser.profile_pic.url}}" class="img-thumbnail" alt="user profile pic" width="200">
+                
+            
+                     {{user.first_name}} {{user.last_name}}
+                
+            {%else%}
+            --NO USERS--           
+            {%endif%}-->
+            <div class="media">
+                <h6>{{artistinfo.username}}</h6>
+                <img class="mr-3" src="{{artistinfo2.profile_pic.url}}" alt="user profile pic" width="150">
+                <div class="media-body">
+                    <ul>                
+                        <li><h5><a href={{artistinfo2.portfolio_site}}>Instagram</a></h5></li>
+                        <li><h5>Mail id : {{artistinfo.email}}</h5></li>
+                    </ul>
+                </div>
+              </div>
+            </div>
+{% endblock %}

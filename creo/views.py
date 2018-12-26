@@ -100,3 +100,11 @@ def detailpost(request,id):
     submission = get_object_or_404(PostSubmission,pk=id)
     #form = CommentForm()
     return render(request, 'detail.html', {'submission': submission})#, 'form': form})
+def artistdetail(request,publisher):
+    artistinfo = get_object_or_404(User,username=publisher)
+   # print(type(artistinfo))
+    artistinfo2 = get_object_or_404(UserProfileInfo,user_id=artistinfo.id)
+    print((artistinfo2.user_id))
+    #form = CommentForm()
+   # return render(request, 'artistdetail.html', {'artistinfo': artistinfo,})#, 'form': form})
+    return render(request, 'artistdetail.html', {'artistinfo': artistinfo,'artistinfo2': artistinfo2})#, 'form': form})
