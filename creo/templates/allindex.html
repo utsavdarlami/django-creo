@@ -8,7 +8,8 @@
 <div class="row">
       <h3>{{submission.title}}</h3>
       <h5>Date : {{submission.pub_date}}</h5>
-      <img src="{{ submission.content.url }}/" width="400" padding="5">
+      <h5>Id :  {{submission.id}}</h5>
+      <a href="{% url 'detailpost' submission.id %}"><img src="{{ submission.content.url }}/" width="400" padding="5"></a>
       <h5>Caption : {{submission.description}}</h5>
 </div>
 {% endfor %}
