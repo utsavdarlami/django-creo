@@ -27,7 +27,3 @@ class UserProfileInfoForm(forms.ModelForm):
         model  = UserProfileInfo
         fields = ('portfolio_site','profile_pic')
 
-class PostSubmissionForm(forms.Form):
-    title = forms.CharField(label='Submission title', max_length=100)
-    description = forms.CharField(label='Description', max_length=500, widget=forms.Textarea)
-    image = forms.ImageField()
