@@ -113,7 +113,7 @@ def artistdetail(request,publisher):
 
 def addcomment(request,id):
     current_submission = get_object_or_404(PostSubmission,pk=id)
-     if request.user.is_authenticated:
+    if request.user.is_authenticated:
         if request.method =="POST":
             comment_form = CommentPostForm(request.POST)
             if comment_form.is_valid():
