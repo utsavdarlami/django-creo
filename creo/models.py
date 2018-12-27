@@ -25,6 +25,7 @@ class PostSubmission(models.Model):
 
 class CommentPost(models.Model):
     title = models.ForeignKey(PostSubmission,on_delete=models.CASCADE,)
+    pub_date = models.DateTimeField(auto_now_add=True)
     comment  = models.CharField(max_length=500)
     def __str__(self):
         return str(self.title)

@@ -5,15 +5,16 @@
 <div class="jumbotron">
 
     <h3>{{submission.title}}</h3>
-    <h5>Date : {{submission.pub_date}}</h5>
+    <h5>Date : {{submission.pub_date|date:"D d M Y"}}</h5>
     <a href="{%url 'artistdetail' submission.publisher %}"><h5>By :  {{submission.publisher}}</h5></a>
     <img src="{{ submission.content.url }}" style="width:50%;height:auto;">
     <h5>{{submission.description}}</h5>
 
     <p>
+        <h4>Comments</h4>
         <ul>
         {%for comment in comments%}
-            <li><h6>{{comment.comment}}</h6></li>
+            <li><h6>{{comment.pub_date|date:"D d M Y"}}  : {{comment.comment}}</h6></li>
         {%endfor%}
         </ul>
     </p>
