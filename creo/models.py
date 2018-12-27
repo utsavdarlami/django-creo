@@ -22,3 +22,9 @@ class PostSubmission(models.Model):
     publisher = models.ForeignKey(User,on_delete=models.CASCADE,)
     def __str__(self):
         return self.title
+
+class CommentPost(models.Model):
+    title = models.ForeignKey(PostSubmission,on_delete=models.CASCADE,)
+    content  = models.CharField(max_length=500)
+    def __str__(self):
+        return self.title
