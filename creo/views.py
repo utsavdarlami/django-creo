@@ -2,7 +2,7 @@ from django.shortcuts import render
 from django.shortcuts import get_object_or_404
 from django.template.loader import get_template
 from django.http import HttpResponse,HttpResponseRedirect
-from creo.models import UserProfileInfo,PostSubmission
+from creo.models import UserProfileInfo,PostSubmission,CommentPost
 from django.contrib import messages
 from creo.forms import UserForm,UserProfileInfoForm
 from django.views.generic import DeleteView,CreateView
@@ -99,13 +99,15 @@ def homecreo(request):
 
 def detailpost(request,id):
     submission = get_object_or_404(PostSubmission,pk=id)
+    comments  = CommentPost.objects.filter(title_id  = submission.id)
+    print(comments)
     #form = CommentForm()
-    return render(request, 'detail.html', {'submission': submission})#, 'form': form})
+    return render(request, 'detail.html', {'submission': submission,'comments':comments},)#, 'form': form})
+    #return render(request, 'detail.html', {'submission': submission,})#, 'form': form})
+
 def artistdetail(request,publisher):
     artistinfo = get_object_or_404(User,username=publisher)
-   # print(type(artistinfo))
     artistinfo2 = get_object_or_404(UserProfileInfo,user_id=artistinfo.id)
     print((artistinfo2.user_id))
     #form = CommentForm()
-   # return render(request, 'artistdetail.html', {'artistinfo': artistinfo,})#, 'form': form})
     return render(request, 'artistdetail.html', {'artistinfo': artistinfo,'artistinfo2': artistinfo2})#, 'form': form})

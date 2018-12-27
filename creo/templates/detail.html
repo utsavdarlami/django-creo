@@ -10,6 +10,13 @@
     <img src="{{ submission.content.url }}" style="width:50%;height:auto;">
     <h5>{{submission.description}}</h5>
 
+    <p>
+        <ul>
+        {%for comment in comments%}
+            <li><h6>{{comment.comment}}</h6></li>
+        {%endfor%}
+        </ul>
+    </p>
 </div>
 
 {% if error_message %}<p><strong>{{ error_message }}</strong></p>{% endif %}
