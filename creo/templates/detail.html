@@ -18,6 +18,15 @@
         {%endfor%}
         </ul>
     </p>
+    
+    <label>Your comment</label>
+    <form action="{% url 'detailpost' submission.id %}" method="post">
+    {% csrf_token %}
+    {{ form }}
+    <br>
+    <input type="submit" value="Submit">
+    </form> 
+
 </div>
 
 {% if error_message %}<p><strong>{{ error_message }}</strong></p>{% endif %}

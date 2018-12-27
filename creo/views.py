@@ -4,7 +4,7 @@ from django.template.loader import get_template
 from django.http import HttpResponse,HttpResponseRedirect
 from creo.models import UserProfileInfo,PostSubmission,CommentPost
 from django.contrib import messages
-from creo.forms import UserForm,UserProfileInfoForm
+from creo.forms import UserForm,UserProfileInfoForm,CommentPostForm
 from django.views.generic import DeleteView,CreateView
 from django.contrib.auth.models import User
 from django import forms
@@ -100,8 +100,8 @@ def homecreo(request):
 def detailpost(request,id):
     submission = get_object_or_404(PostSubmission,pk=id)
     comments  = CommentPost.objects.filter(title_id  = submission.id)
-    #form = CommentForm()
-    return render(request, 'detail.html', {'submission': submission,'comments':comments},)#, 'form': form})
+    form = CommentPostForm()
+    return render(request, 'detail.html', {'submission': submission,'comments':comments, 'form': form})
     #return render(request, 'detail.html', {'submission': submission,})#, 'form': form})
 
 def artistdetail(request,publisher):

@@ -1,6 +1,6 @@
 from django import forms
 from django.contrib.auth.models import User
-from creo.models import UserProfileInfo
+from creo.models import UserProfileInfo,CommentPost
 class UserForm(forms.ModelForm):
     password = forms.CharField(widget =forms.PasswordInput(attrs = {"class":"form-control is-valid", "placeholder":"Password","label for":"exampleInputPassword1","size":"25"}))
     password1 = forms.CharField(widget =forms.PasswordInput(attrs = {"class":"form-control is-valid", "placeholder":"Password","label for":"exampleInputPassword1","size":"25"}),label="Password Confirmation")
@@ -26,4 +26,9 @@ class UserProfileInfoForm(forms.ModelForm):
     class Meta():
         model  = UserProfileInfo
         fields = ('portfolio_site','profile_pic')
-
+class CommentPostForm(forms.ModelForm):
+    comment= forms.CharField(label='', max_length=500, widget=forms.Textarea)
+    class Meta():
+        model = CommentPost
+        fields = ('comment',)
+        exclude = ('title','publisher','pub_date',)
