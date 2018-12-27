@@ -72,6 +72,13 @@ See Directory Tree Structure
     ├── index.html
     └── signin.html
 ```
+How To Run
+```bash
+-Install Python and Pip
+- Create A Virtual Environment 
+Inside Virtual Environment
+$ pip install -r requirements.txt
+$ python manage.py runserver
 
-
+```
 
