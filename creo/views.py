@@ -1,5 +1,6 @@
 from django.shortcuts import render
 from django.shortcuts import get_object_or_404
+from django.db.models import F
 from django.template.loader import get_template
 from django.http import HttpResponse,HttpResponseRedirect
 from creo.models import UserProfileInfo,PostSubmission,CommentPost
@@ -119,6 +120,8 @@ def addcomment(request,id):
             if comment_form.is_valid():
                 comment = CommentPost(title=current_submission, comment=comment_form.cleaned_data['comment'],publisher=request.user)
                 comment.save()
+                current_submission.comment_count = F('comment_count')+1
+                current_submission.save()
             return HttpResponseRedirect(reverse('detailpost', args=(id,)))
         else:
             return(detailpost(request,id))
