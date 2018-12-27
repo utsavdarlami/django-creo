@@ -113,14 +113,14 @@ def artistdetail(request,publisher):
 
 def addcomment(request,id):
     current_submission = get_object_or_404(PostSubmission,pk=id)
-    if request.method =="POST":
-        if request.user.is_authenticated:
+     if request.user.is_authenticated:
+        if request.method =="POST":
             comment_form = CommentPostForm(request.POST)
             if comment_form.is_valid():
                 comment = CommentPost(title=current_submission, comment=comment_form.cleaned_data['comment'],publisher=request.user)
                 comment.save()
             return HttpResponseRedirect(reverse('detailpost', args=(id,)))
         else:
-           return(signin(request))
+            return(detailpost(request,id))
     else:
-        return(detailpost(request,id))
+        return(signin(request))
