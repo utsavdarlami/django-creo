@@ -23,7 +23,7 @@ from django.conf.urls.static import static
 app_name = "creo"
 urlpatterns = [
     path('admin/', admin.site.urls),
-    path('',views.index,name="index"),
+    path('',views.homecreo,name="index"),
     path('signin/',views.signin,name="signin"),
     
 
