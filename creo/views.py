@@ -100,7 +100,6 @@ def homecreo(request):
 def detailpost(request,id):
     submission = get_object_or_404(PostSubmission,pk=id)
     comments  = CommentPost.objects.filter(title_id  = submission.id)
-    print(comments)
     #form = CommentForm()
     return render(request, 'detail.html', {'submission': submission,'comments':comments},)#, 'form': form})
     #return render(request, 'detail.html', {'submission': submission,})#, 'form': form})
