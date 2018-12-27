@@ -27,7 +27,7 @@ class UserProfileInfoForm(forms.ModelForm):
         model  = UserProfileInfo
         fields = ('portfolio_site','profile_pic')
 class CommentPostForm(forms.ModelForm):
-    comment= forms.CharField(label='', max_length=500, widget=forms.Textarea)
+    comment= forms.CharField(label='', max_length=500, widget=forms.Textarea(attrs = {"class":"form-control col-15","rows":3,"cols":20}))
     class Meta():
         model = CommentPost
         fields = ('comment',)

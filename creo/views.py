@@ -110,3 +110,17 @@ def artistdetail(request,publisher):
     print((artistinfo2.user_id))
     #form = CommentForm()
     return render(request, 'artistdetail.html', {'artistinfo': artistinfo,'artistinfo2': artistinfo2})#, 'form': form})
+
+def addcomment(request,id):
+    current_submission = get_object_or_404(PostSubmission,pk=id)
+    if request.method =="POST":
+        if request.user.is_authenticated:
+            comment_form = CommentPostForm(request.POST)
+            if comment_form.is_valid():
+                comment = CommentPost(title=current_submission, comment=comment_form.cleaned_data['comment'],publisher=request.user)
+                comment.save()
+            return HttpResponseRedirect(reverse('detailpost', args=(id,)))
+        else:
+           return(signin(request))
+    else:
+        return(detailpost(request,id))

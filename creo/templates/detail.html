@@ -14,17 +14,17 @@
         <h4>Comments</h4>
         <ul>
         {%for comment in comments%}
-            <li><h6>{{comment.pub_date|date:"D d M Y"}}  : {{comment.comment}}</h6></li>
+            <li><h6>{{comment.pub_date|date:"D d M Y"}} "{{comment.publisher}}"  : {{comment.comment}}</h6></li>
         {%endfor%}
         </ul>
     </p>
     
     <label>Your comment</label>
-    <form action="{% url 'detailpost' submission.id %}" method="post">
+    <form action="{% url 'addcomment' submission.id %}" method="post">
     {% csrf_token %}
     {{ form }}
     <br>
-    <input type="submit" value="Submit">
+    <button type="submit" class="btn btn-success" >Submit</button>
     </form> 
 
 </div>
