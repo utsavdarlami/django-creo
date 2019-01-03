@@ -19,6 +19,7 @@ class PostSubmission(models.Model):
     description = models.CharField(max_length=500)
     pub_date = models.DateTimeField(auto_now_add=True)
     content = models.ImageField(upload_to ='postedpics', blank=True)
+    content2  = models.FileField(upload_to = 'postedvideos',blank=True)
     publisher = models.ForeignKey(User,on_delete=models.CASCADE,)
     like_count = models.IntegerField(default=0)
     comment_count = models.IntegerField(default=0)
