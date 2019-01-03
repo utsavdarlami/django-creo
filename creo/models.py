@@ -20,7 +20,7 @@ class PostSubmission(models.Model):
     pub_date = models.DateTimeField(auto_now_add=True)
     content = models.ImageField(upload_to ='postedpics', blank=True)
     publisher = models.ForeignKey(User,on_delete=models.CASCADE,)
-    likes = models.IntegerField(default=0)
+    like_count = models.IntegerField(default=0)
     comment_count = models.IntegerField(default=0)
     def __str__(self):
         return self.title
@@ -32,3 +32,11 @@ class CommentPost(models.Model):
     comment  = models.CharField(max_length=500)
     def __str__(self):
         return str(self.title)
+
+class Likes(models.Model):
+    post = models.ForeignKey(PostSubmission,on_delete=models.CASCADE,)
+    publisher = models.ForeignKey(User,on_delete=models.CASCADE,)
+    pub_date = models.DateTimeField(auto_now_add=True)
+    like  = models.BooleanField()
+    def __str__(self):
+        return str(self.publisher)

@@ -10,7 +10,7 @@ urlpatterns = [
     path('post/',views.PostFormView.as_view(),name="post"),
     path('photos/<int:id>/',views.detailpost,name="detailpost"),
     path('<int:id>/comment/',views.addcomment,name="addcomment"),
-    #path('<int:id>/likes/',views.addlike,name="addlike"),
+    path('<int:id>/likes/',views.addlike,name="addlike"),
     path('portfolio/<str:publisher>/',views.artistdetail,name="artistdetail"),
 
 

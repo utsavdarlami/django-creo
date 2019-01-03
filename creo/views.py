@@ -3,9 +3,9 @@ from django.shortcuts import get_object_or_404
 from django.db.models import F
 from django.template.loader import get_template
 from django.http import HttpResponse,HttpResponseRedirect
-from creo.models import UserProfileInfo,PostSubmission,CommentPost
+from creo.models import UserProfileInfo,PostSubmission,CommentPost,Likes
 from django.contrib import messages
-from creo.forms import UserForm,UserProfileInfoForm,CommentPostForm
+from creo.forms import UserForm,UserProfileInfoForm,CommentPostForm,LikePostButton
 from django.views.generic import DeleteView,CreateView
 from django.contrib.auth.models import User
 from django import forms
@@ -122,6 +122,20 @@ def addcomment(request,id):
                 comment.save()
                 current_submission.comment_count = F('comment_count')+1
                 current_submission.save()
+            return HttpResponseRedirect(reverse('detailpost', args=(id,)))
+        else:
+            return(detailpost(request,id))
+    else:
+        return(signin(request))
+
+def addlike(request,id):
+    current_submission = get_object_or_404(PostSubmission,pk=id)
+    if request.user.is_authenticated:
+        if request.method =="POST":
+            like = Likes(post=current_submission,like=True,publisher=request.user)
+            like.save()
+            current_submission.like_count = F('like_count')+1
+            current_submission.save()
             return HttpResponseRedirect(reverse('detailpost', args=(id,)))
         else:
             return(detailpost(request,id))
