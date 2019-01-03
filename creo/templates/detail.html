@@ -10,6 +10,10 @@
     <img src="{{ submission.content.url }}" style="width:50%;height:auto;">
     <h5>{{submission.description}}</h5>
     <h5>likes:{{submission.like_count}}</h5>     <h5>comments:{{submission.comment_count}}</h5>
+    <form action="{%url 'addlike' submission.id %}" method="POST">
+        <input type="submit" class="btn btn-success" value="Like">
+        {%csrf_token%}
+    </form>
     <p>
         <h4>Comments</h4>
         <ul>
@@ -19,10 +23,6 @@
         {%endfor%}
         </ul>
     </p>
-    <form action="{%url 'addlike' submission.id %}" method="POST">
-        <input type="submit" class="btn btn-success" value="Like">
-        {%csrf_token%}
-    </form>
     <label>Your comment</label>
     <form action="{% url 'addcomment' submission.id %}" method="post">
     {% csrf_token %}

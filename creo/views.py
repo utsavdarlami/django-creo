@@ -132,10 +132,23 @@ def addlike(request,id):
     current_submission = get_object_or_404(PostSubmission,pk=id)
     if request.user.is_authenticated:
         if request.method =="POST":
-            like = Likes(post=current_submission,like=True,publisher=request.user)
-            like.save()
-            current_submission.like_count = F('like_count')+1
-            current_submission.save()
+            if Likes.objects.filter(post = current_submission,publisher=request.user).exists():
+                liked = Likes.objects.get(post = current_submission,publisher=request.user)
+                if liked.like == True:
+                    liked.like = False
+                    liked.save()
+                    current_submission.like_count = F('like_count')-1
+                    current_submission.save()
+                else :
+                    liked.like = True
+                    liked.save()
+                    current_submission.like_count = F('like_count')+1
+                    current_submission.save()
+            else:
+                like = Likes(post=current_submission,like=True,publisher=request.user)
+                like.save()
+                current_submission.like_count = F('like_count')+1
+                current_submission.save()
             return HttpResponseRedirect(reverse('detailpost', args=(id,)))
         else:
             return(detailpost(request,id))
