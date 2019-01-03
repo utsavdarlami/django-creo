@@ -93,7 +93,7 @@ class PostFormView(CreateView):
         return super().form_valid(form)
 
 def homecreo(request):
-    latest_submissions = PostSubmission.objects.order_by('-pub_date')[:5]
+    latest_submissions = PostSubmission.objects.order_by('-like_count','-pub_date')
     # template = loader.get_template('images/index.html')
     context = { 'latest_submissions': latest_submissions }
     return render(request, 'allindex.html', context)
