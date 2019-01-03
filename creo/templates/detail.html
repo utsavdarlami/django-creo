@@ -7,7 +7,28 @@
     <h3>{{submission.title}}</h3>
     <h5>Date : {{submission.pub_date|date:"D d M Y"}}</h5>
     <h5>By : <a href="{%url 'artistdetail' submission.publisher %}">{{submission.publisher}}</h5></a>
-    <img src="{{ submission.content.url }}" style="width:50%;height:auto;">
+      
+    {%if submission.video == True %}
+    <video width="420" height="340" controls>
+                <source src="{{ submission.content.url }}/" type="video/mp4">
+                <source src="{{ submission.content.url }}/" type="video/ogg">
+                Your browser does not support the video tag.
+    </video>          
+    {%endif%}
+
+    {%if submission.image == True %}
+        <img src="{{ submission.content.url }}" style="width:50%;height:auto;">
+    {%endif%}
+
+    {%if submission.audio == True %}
+        <audio controls>
+                <source src="{{ submission.content.url }}/" type="audio/ogg">
+                <source src="{{ submission.content.url }}/" type="audio/mpeg">
+                Your browser does not support the audio tag.
+        </audio>
+    {%endif%}
+
+    
     <h5>{{submission.description}}</h5>
     <h5>likes:{{submission.like_count}}</h5>     <h5>comments:{{submission.comment_count}}</h5>
     <form action="{%url 'addlike' submission.id %}" method="POST">

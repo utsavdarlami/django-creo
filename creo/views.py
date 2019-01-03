@@ -85,7 +85,7 @@ class UserDeleteView(DeleteView):
     success_url = reverse_lazy("index")
     #logout(request)
 class PostFormView(CreateView):
-    fields=('title','description','content')
+    fields=('title','description','content','video','image','audio')
     model = PostSubmission
     success_url = reverse_lazy("index")
     def form_valid(self, form):

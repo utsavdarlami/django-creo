@@ -6,9 +6,36 @@
 {% for submission in latest_submissions %}
 
 <div class="row">
+      
       <h3>{{submission.title}}</h3>
       <h5>Date : {{submission.pub_date|date:"D d M Y"}}</h5>
+
+      {%if submission.video == True %}
+      <a href="{% url 'detailpost' submission.id %}">
+      <video width="320" height="240" controls>
+                  <source src="{{ submission.content.url }}/" type="video/mp4">
+                  <source src="{{ submission.content.url }}/" type="video/ogg">
+                  Your browser does not support the video tag.
+      </video>
+      </a>          
+      {%endif%}
+
+      {%if submission.image == True %}
       <a href="{% url 'detailpost' submission.id %}"><img src="{{ submission.content.url }}/" width="400" padding="5"></a>
+      {%endif%}
+
+      {%if submission.audio == True %}
+      <a href="{% url 'detailpost' submission.id %}">
+            <div class="container">
+            <audio controls>
+                  <source src="{{ submission.content.url }}/" type="audio/ogg">
+                  <source src="{{ submission.content.url }}/" type="audio/mpeg">
+                  Your browser does not support the audio tag.
+            </audio>
+            </div>
+      </a>
+      {%endif%}
+
       <h5>Caption : {{submission.description}}</h5>
 </div>
 {% endfor %}
