@@ -6,7 +6,7 @@ from django.http import HttpResponse,HttpResponseRedirect
 from creo.models import UserProfileInfo,PostSubmission,CommentPost,Likes
 from django.contrib import messages
 from creo.forms import UserForm,UserProfileInfoForm,CommentPostForm,LikePostButton
-from django.views.generic import DeleteView,CreateView
+from django.views.generic import DeleteView,CreateView,UpdateView
 from django.contrib.auth.models import User
 from django import forms
 #for login and logout
@@ -84,6 +84,10 @@ class UserDeleteView(DeleteView):
     model = User
     success_url = reverse_lazy("index")
     #logout(request)
+class UserUpdateView(UpdateView):
+    fields = ('email',)
+    model = User
+    success_url = reverse_lazy("profile")
 class PostFormView(CreateView):
     fields=('title','description','content','video','image','audio')
     model = PostSubmission

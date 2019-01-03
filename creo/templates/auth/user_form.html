@@ -1,0 +1,12 @@
+{%extends "base.html"%}
+{%block contents%}
+
+        <div class="jumbotron">
+               <form method="POST">
+                   {%csrf_token%}
+                   {{form.as_p}}
+                   <input type="submit" class="btn btn-success" value="Confirm">
+               </form>
+               <a href="/creo/profile/">Cancel</a>
+        </div>
+{% endblock %}

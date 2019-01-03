@@ -24,7 +24,12 @@
                 </div>
               </div>
             </div>
+            <div class="btn-group" role="group" aria-label="Basic example">
             <form action="/creo/delete/{{u.pk}}">
                     <input type="submit" class="btn btn-danger" value="Delete">
             </form>
+            <form action="/creo/update/{{u.pk}}">
+                <input type="submit" class="btn btn-info" value="Edit">
+            </form>
+            </div>
 {% endblock %}
