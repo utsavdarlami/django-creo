@@ -112,34 +112,33 @@ def UpdateProfile(request):
         return HttpResponse("Please Login")
 
 def homecreo(request):
-    latest_submissions = PostSubmission.objects.order_by('-like_count','-pub_date')
+    latest_submissions = PostSubmission.objects.order_by('-view_count','-like_count','-pub_date')
     # template = loader.get_template('images/index.html')
     context = { 'latest_submissions': latest_submissions }
     return render(request, 'allindex.html', context)
 
 def allvideo(request):
-    latest_submissions = PostSubmission.objects.order_by('-like_count','-pub_date')
+    latest_submissions = PostSubmission.objects.order_by('-view_count','-like_count','-pub_date')
     # template = loader.get_template('images/index.html')
     context = { 'latest_submissions': latest_submissions }
     return render(request, 'allvideo.html', context)
 
 def allimage(request):
-    latest_submissions = PostSubmission.objects.order_by('-like_count','-pub_date')
+    latest_submissions = PostSubmission.objects.order_by('-view_count','-like_count','-pub_date')
     # template = loader.get_template('images/index.html')
     context = { 'latest_submissions': latest_submissions }
     return render(request, 'allimage.html', context)
     
 def allaudio(request):
-    latest_submissions = PostSubmission.objects.order_by('-like_count','-pub_date')
+    latest_submissions = PostSubmission.objects.order_by('-view_count','-like_count','-pub_date')
     # template = loader.get_template('images/index.html')
     context = { 'latest_submissions': latest_submissions }
     return render(request, 'allaudio.html', context)
 
 def detailpost(request,id):
     submission = get_object_or_404(PostSubmission,pk=id)
-    if request.method =="GET":
-        submission.view_count = F('view_count')+1
-        submission.save()
+    submission.view_count = F('view_count')+1
+    submission.save()
     comments  = CommentPost.objects.filter(title_id  = submission.id)
     if request.user.is_authenticated:
         if Likes.objects.filter(post = submission,publisher=request.user).exists():

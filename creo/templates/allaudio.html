@@ -9,6 +9,7 @@
       {%if submission.post_type == "2" %}
       <h3>{{submission.title}}</h3>
       <h5>Date : {{submission.pub_date|date:"D d M Y"}}</h5>
+      <h5>views:{{submission.view_count}}</h5>
       <a href="{% url 'detailpost' submission.id %}">
             <div class="container">
             <audio controls>

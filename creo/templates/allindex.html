@@ -9,7 +9,7 @@
       
       <h3>{{submission.title}}</h3>
       <h5>Date : {{submission.pub_date|date:"D d M Y"}}</h5>
-
+      <h5>views:{{submission.view_count}}</h5>
       {%if submission.post_type == "1" %}
       <a href="{% url 'detailpost' submission.id %}">
       <video width="420" height="340" controls>
