@@ -126,10 +126,11 @@ def allaudio(request):
 def detailpost(request,id):
     submission = get_object_or_404(PostSubmission,pk=id)
     comments  = CommentPost.objects.filter(title_id  = submission.id)
-    if Likes.objects.filter(post = submission,publisher=request.user).exists():
-        liked = Likes.objects.get(post = submission,publisher=request.user)
-        form = CommentPostForm()
-        return render(request, 'detail.html', {'submission': submission,'comments':comments, 'form': form,'liked':liked})
+    if request.user.is_authenticated:
+        if Likes.objects.filter(post = submission,publisher=request.user).exists():
+            liked = Likes.objects.get(post = submission,publisher=request.user)
+            form = CommentPostForm()
+            return render(request, 'detail.html', {'submission': submission,'comments':comments, 'form': form,'liked':liked})
     #return render(request, 'detail.html', {'submission': submission,})#, 'form': form})
     else:
         form = CommentPostForm()
