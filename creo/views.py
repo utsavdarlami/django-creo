@@ -137,6 +137,9 @@ def allaudio(request):
 
 def detailpost(request,id):
     submission = get_object_or_404(PostSubmission,pk=id)
+    if request.method =="GET":
+        submission.view_count = F('view_count')+1
+        submission.save()
     comments  = CommentPost.objects.filter(title_id  = submission.id)
     if request.user.is_authenticated:
         if Likes.objects.filter(post = submission,publisher=request.user).exists():

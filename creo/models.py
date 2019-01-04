@@ -37,6 +37,7 @@ class PostSubmission(models.Model):
     publisher = models.ForeignKey(User,on_delete=models.CASCADE,)
     like_count = models.IntegerField(default=0)
     comment_count = models.IntegerField(default=0)
+    view_count = models.IntegerField(default=0)
     def __str__(self):
         return self.title
 

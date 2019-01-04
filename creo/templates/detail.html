@@ -34,6 +34,7 @@
 
     
     <h5>{{submission.description}}</h5>
+    <h5>views:{{submission.view_count}}</h5>
     <h5>likes:{{submission.like_count}}</h5>     <h5>comments:{{submission.comment_count}}</h5>
     <form action="{%url 'addlike' submission.id %}" method="POST">
         <input type="submit" class="btn btn-success" value="Like">
