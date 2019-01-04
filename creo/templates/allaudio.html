@@ -1,0 +1,30 @@
+{% extends "base.html" %}
+
+{% block contents %}
+<div class="jumbotron">
+{% if latest_submissions %}
+{% for submission in latest_submissions %}
+
+<div class="row">
+      {%if submission.audio == True %}
+      <h3>{{submission.title}}</h3>
+      <h5>Date : {{submission.pub_date|date:"D d M Y"}}</h5>
+      <a href="{% url 'detailpost' submission.id %}">
+            <div class="container">
+            <audio controls>
+                  <source src="{{ submission.content.url }}/" type="audio/ogg">
+                  <source src="{{ submission.content.url }}/" type="audio/mpeg">
+                  Your browser does not support the audio tag.
+            </audio>
+            </div>
+      </a>
+      <h5>Caption : {{submission.description}}</h5>
+      {%endif%}
+</div>
+{% endfor %}
+
+{% else %}
+<p>No submissions are available.</p>
+</div>
+{% endif %}
+{% endblock %}

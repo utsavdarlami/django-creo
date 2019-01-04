@@ -5,7 +5,7 @@ from django.template.loader import get_template
 from django.http import HttpResponse,HttpResponseRedirect
 from creo.models import UserProfileInfo,PostSubmission,CommentPost,Likes
 from django.contrib import messages
-from creo.forms import UserForm,UserProfileInfoForm,CommentPostForm,LikePostButton
+from creo.forms import UserForm,UserProfileInfoForm,CommentPostForm,LikePostButton,PostSubmissionForm
 from django.views.generic import DeleteView,CreateView,UpdateView
 from django.contrib.auth.models import User
 from django import forms
@@ -13,6 +13,7 @@ from django import forms
 from django.contrib.auth import authenticate,login,logout
 from django.contrib.auth.decorators import login_required
 from django.urls import reverse,reverse_lazy
+from django import forms
 
 # Create your views here.
 
@@ -89,18 +90,38 @@ class UserUpdateView(UpdateView):
     model = User
     success_url = reverse_lazy("profile")
 class PostFormView(CreateView):
-    fields=('title','description','content','video','image','audio')
     model = PostSubmission
     success_url = reverse_lazy("index")
+    form_class = PostSubmissionForm 
     def form_valid(self, form):
         form.instance.publisher = self.request.user
         return super().form_valid(form)
-
+  
 def homecreo(request):
     latest_submissions = PostSubmission.objects.order_by('-like_count','-pub_date')
     # template = loader.get_template('images/index.html')
     context = { 'latest_submissions': latest_submissions }
     return render(request, 'allindex.html', context)
+
+def allvideo(request):
+    latest_submissions = PostSubmission.objects.order_by('-like_count','-pub_date')
+    # template = loader.get_template('images/index.html')
+    context = { 'latest_submissions': latest_submissions }
+    return render(request, 'allvideo.html', context)
+
+def allimage(request):
+    latest_submissions = PostSubmission.objects.order_by('-like_count','-pub_date')
+    # template = loader.get_template('images/index.html')
+    context = { 'latest_submissions': latest_submissions }
+    return render(request, 'allimage.html', context)
+    
+def allaudio(request):
+    latest_submissions = PostSubmission.objects.order_by('-like_count','-pub_date')
+    # template = loader.get_template('images/index.html')
+    context = { 'latest_submissions': latest_submissions }
+    return render(request, 'allaudio.html', context)
+
+
 
 def detailpost(request,id):
     submission = get_object_or_404(PostSubmission,pk=id)
@@ -112,9 +133,10 @@ def detailpost(request,id):
 def artistdetail(request,publisher):
     artistinfo = get_object_or_404(User,username=publisher)
     artistinfo2 = get_object_or_404(UserProfileInfo,user_id=artistinfo.id)
-    print((artistinfo2.user_id))
+    print(artistinfo2)
+    artistposts = PostSubmission.objects.filter(publisher_id=artistinfo.id)
     #form = CommentForm()
-    return render(request, 'artistdetail.html', {'artistinfo': artistinfo,'artistinfo2': artistinfo2})#, 'form': form})
+    return render(request, 'artistdetail.html', {'artistinfo': artistinfo,'artistinfo2': artistinfo2,'artistposts':artistposts})#, 'form': form})
 
 def addcomment(request,id):
     current_submission = get_object_or_404(PostSubmission,pk=id)
@@ -158,3 +180,6 @@ def addlike(request,id):
             return(detailpost(request,id))
     else:
         return(signin(request))
+
+"""def myposts(request):
+    posts = PostSubmission.objects.get(publisher=request.user)"""

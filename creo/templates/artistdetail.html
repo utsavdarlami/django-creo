@@ -1,7 +1,7 @@
 {%extends "base.html"%}
 {%block contents%}
 
-        <div class="jumbotron">
+      <div class="jumbotron">
            <!-- {%if alluser%}
                 <h6>{{alluser.user}}</h6>
                 <img src="{{alluser.profile_pic.url}}" class="img-thumbnail" alt="user profile pic" width="200">
@@ -13,14 +13,54 @@
             --NO USERS--           
             {%endif%}-->
             <div class="media">
-                <h6>{{artistinfo.username}}</h6>
-                <img class="mr-3" src="{{artistinfo2.profile_pic.url}}" alt="user profile pic" width="150">
-                <div class="media-body">
-                    <ul>                
+                  <h6>{{artistinfo.username}}</h6>
+                  <img class="mr-3" src="{{artistinfo2.profile_pic.url}}" alt="user profile pic" width="150">
+                  <div class="media-body">
+                  <ul>                
                         <li><h5><a href={{artistinfo2.portfolio_site}}>Instagram</a></h5></li>
                         <li><h5>Mail id : {{artistinfo.email}}</h5></li>
-                    </ul>
-                </div>
-              </div>
+                  </ul>
+                  </div>
             </div>
+            {% if artistposts %}
+            {% for submission in artistposts %}
+
+            <div class="row">    
+                  <h3>{{submission.title}}</h3>
+                  <h5>Date : {{submission.pub_date|date:"D d M Y"}}</h5>
+
+                  {%if submission.video == True %}
+                  <a href="{% url 'detailpost' submission.id %}">
+                  <video width="320" height="240" controls>
+                              <source src="{{ submission.content.url }}/" type="video/mp4">
+                              <source src="{{ submission.content.url }}/" type="video/ogg">
+                              Your browser does not support the video tag.
+                  </video>
+                  </a>          
+                  {%endif%}
+
+                  {%if submission.image == True %}
+                  <a href="{% url 'detailpost' submission.id %}"><img src="{{ submission.content.url }}/" width="400" padding="5"></a>
+                  {%endif%}
+
+                  {%if submission.audio == True %}
+                  <a href="{% url 'detailpost' submission.id %}">
+                        <div class="container">
+                        <audio controls>
+                              <source src="{{ submission.content.url }}/" type="audio/ogg">
+                              <source src="{{ submission.content.url }}/" type="audio/mpeg">
+                              Your browser does not support the audio tag.
+                        </audio>
+                        </div>
+                  </a>
+                  {%endif%}
+
+                  <h5>Caption : {{submission.description}}</h5>
+            </div>
+            {% endfor %}
+
+            {% else %}
+            <p>No submissions are available.</p>
+            {% endif %}
+      </div>
 {% endblock %}

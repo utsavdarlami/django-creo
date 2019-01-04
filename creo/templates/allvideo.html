@@ -1,0 +1,29 @@
+{% extends "base.html" %}
+
+{% block contents %}
+<div class="jumbotron">
+{% if latest_submissions %}
+{% for submission in latest_submissions %}
+
+<div class="row">
+      {%if submission.video == True %}
+            <h3>{{submission.title}}</h3>
+            <h5>Date : {{submission.pub_date|date:"D d M Y"}}</h5>
+            <a href="{% url 'detailpost' submission.id %}">
+            <video width="320" height="240" controls>
+                        <source src="{{ submission.content.url }}/" type="video/mp4">
+                        <source src="{{ submission.content.url }}/" type="video/ogg">
+                        Your browser does not support the video tag.
+            </video>
+            </a>                
+            <h5>Caption : {{submission.description}}</h5>
+      {%endif%}
+
+</div>
+{% endfor %}
+
+{% else %}
+<p>No submissions are available.</p>
+</div>
+{% endif %}
+{% endblock %}

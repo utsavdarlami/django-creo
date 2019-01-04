@@ -1,6 +1,6 @@
 from django import forms
 from django.contrib.auth.models import User
-from creo.models import UserProfileInfo,CommentPost,Likes
+from creo.models import UserProfileInfo,CommentPost,Likes,PostSubmission
 class UserForm(forms.ModelForm):
     password = forms.CharField(widget =forms.PasswordInput(attrs = {"class":"form-control is-valid", "placeholder":"Password","label for":"exampleInputPassword1","size":"25"}))
     password1 = forms.CharField(widget =forms.PasswordInput(attrs = {"class":"form-control is-valid", "placeholder":"Password","label for":"exampleInputPassword1","size":"25"}),label="Password Confirmation")
@@ -38,3 +38,10 @@ class LikePostButton(forms.ModelForm):
         model = Likes
         fields = ('like',)
         exclude = ('post','publisher','pub_date',)
+
+class PostSubmissionForm(forms.ModelForm):
+    title = forms.CharField(widget = forms.TextInput(attrs = {"class":"form-control is-valid", "id":"exampleInputUserName1","placeholder":"Enter Title"}))
+    class Meta():
+        model = PostSubmission
+        fields=('title','description','content','video','image','audio')
+        exclude=('pub_date','publisher','pub_date',)
