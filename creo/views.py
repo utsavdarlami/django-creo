@@ -143,6 +143,9 @@ def detailpost(request,id):
             liked = Likes.objects.get(post = submission,publisher=request.user)
             form = CommentPostForm()
             return render(request, 'detail.html', {'submission': submission,'comments':comments, 'form': form,'liked':liked})
+        else:
+            form = CommentPostForm()
+            return render(request, 'detail.html', {'submission': submission,'comments':comments, 'form': form})
     #return render(request, 'detail.html', {'submission': submission,})#, 'form': form})
     else:
         form = CommentPostForm()
