@@ -10,9 +10,9 @@
       <h3>{{submission.title}}</h3>
       <h5>Date : {{submission.pub_date|date:"D d M Y"}}</h5>
 
-      {%if submission.video == True %}
+      {%if submission.post_type == "1" %}
       <a href="{% url 'detailpost' submission.id %}">
-      <video width="320" height="240" controls>
+      <video width="420" height="340" controls>
                   <source src="{{ submission.content.url }}/" type="video/mp4">
                   <source src="{{ submission.content.url }}/" type="video/ogg">
                   Your browser does not support the video tag.
@@ -20,11 +20,11 @@
       </a>          
       {%endif%}
 
-      {%if submission.image == True %}
+      {%if submission.post_type == "0" %}
       <a href="{% url 'detailpost' submission.id %}"><img src="{{ submission.content.url }}/" width="400" padding="5"></a>
       {%endif%}
 
-      {%if submission.audio == True %}
+      {%if submission.post_type == "2" %}
       <a href="{% url 'detailpost' submission.id %}">
             <div class="container">
             <audio controls>

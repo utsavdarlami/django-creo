@@ -51,5 +51,5 @@ class PostSubmissionForm(forms.ModelForm):
     post_type = forms.ChoiceField(choices=POST_CHOICES,label = "Choice The Type Of Content You Are Posting", widget=forms.RadioSelect(attrs={"type":"radio","id":"customRadio1","class":"custom-control-input"}),)
     class Meta():
         model = PostSubmission
-        fields=('title','description','content','video','image','audio','post_type')
+        fields=('title','description','content','post_type')
         exclude=('pub_date','publisher','pub_date',)

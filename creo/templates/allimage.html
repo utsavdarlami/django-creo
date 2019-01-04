@@ -6,7 +6,7 @@
 {% for submission in latest_submissions %}
 
 <div class="row">
-      {%if submission.image == True %}
+      {%if submission.post_type == "0" %}
             <h3>{{submission.title}}</h3>
             <h5>Date : {{submission.pub_date|date:"D d M Y"}}</h5>
 

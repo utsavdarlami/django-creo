@@ -6,7 +6,7 @@
 {% for submission in latest_submissions %}
 
 <div class="row">
-      {%if submission.audio == True %}
+      {%if submission.post_type == "2" %}
       <h3>{{submission.title}}</h3>
       <h5>Date : {{submission.pub_date|date:"D d M Y"}}</h5>
       <a href="{% url 'detailpost' submission.id %}">
