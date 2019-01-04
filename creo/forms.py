@@ -32,6 +32,22 @@ class UserProfileInfoForm(forms.ModelForm):
     class Meta():
         model  = UserProfileInfo
         fields = ('portfolio_site','profile_pic','gender')
+    
+class UserProfileInfoUpdateForm(forms.ModelForm):
+    GENDER_CHOICES = (
+   ('M', 'Male'),
+   ('F', 'Female'),
+   ('O','Other')
+   )
+   # profile_pic= forms.ImageField(widget=PictureWidget)
+    portfolio_site = forms.URLField(widget = forms.URLInput(attrs = {"class":"form-control is-valid","placeholder":"Enter Portfolio Site"}))
+    bio = forms.CharField(widget = forms.TextInput(attrs = {"class":"form-control is-valid", "id":"exampleInputUserName1","placeholder":"Enter Bio"}))
+    gender = forms.ChoiceField(choices=GENDER_CHOICES, widget=forms.RadioSelect())
+    class Meta():
+        model  = UserProfileInfo
+        fields = ('portfolio_site','profile_pic','gender','bio','resume')
+    
+
 class CommentPostForm(forms.ModelForm):
     comment= forms.CharField(label='', max_length=500, widget=forms.Textarea(attrs = {"class":"form-control col-15","rows":3,"cols":20}))
     class Meta():

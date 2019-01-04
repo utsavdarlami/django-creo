@@ -1,0 +1,14 @@
+{%extends "base.html"%}
+{%block contents%}
+        <div class="jumbotron">
+            {%if user.is_authenticated%}        
+                <form enctype="multipart/form-data" method="POST">
+                    {%csrf_token%}
+                    {{form.non_field_errors }}
+                    {{form.as_p}}
+                    <input type="submit" class="btn btn-primary" value = "Post">
+                </form>
+            {%else%}
+            {%endif%}
+        </div>
+{% endblock %}

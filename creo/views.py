@@ -5,7 +5,7 @@ from django.template.loader import get_template
 from django.http import HttpResponse,HttpResponseRedirect
 from creo.models import UserProfileInfo,PostSubmission,CommentPost,Likes
 from django.contrib import messages
-from creo.forms import UserForm,UserProfileInfoForm,CommentPostForm,LikePostButton,PostSubmissionForm
+from creo.forms import UserForm,UserProfileInfoForm,CommentPostForm,LikePostButton,PostSubmissionForm,UserProfileInfoUpdateForm
 from django.views.generic import DeleteView,CreateView,UpdateView
 from django.contrib.auth.models import User
 from django import forms
@@ -89,6 +89,11 @@ class UserUpdateView(UpdateView):
     fields = ('email',)
     model = User
     success_url = reverse_lazy("profile")
+class UserProfileUpdateView(UpdateView):
+    #fields = ('portfolio_site','profile_pic','bio','resume','gender')
+    model = UserProfileInfo
+    form_class = UserProfileInfoUpdateForm
+    success_url = reverse_lazy("profile")
 class PostFormView(CreateView):
     model = PostSubmission
     success_url = reverse_lazy("index")
@@ -96,7 +101,16 @@ class PostFormView(CreateView):
     def form_valid(self, form):
         form.instance.publisher = self.request.user
         return super().form_valid(form)
-  
+
+@login_required
+def UpdateProfile(request):
+    if request.user.is_authenticated:
+        u = request.user
+        alluser = {"alluser":UserProfileInfo.objects.get(user=request.user),'u':u}
+        return render(request,"updateprofile.html",context=alluser)
+    else:
+        return HttpResponse("Please Login")
+
 def homecreo(request):
     latest_submissions = PostSubmission.objects.order_by('-like_count','-pub_date')
     # template = loader.get_template('images/index.html')
@@ -120,8 +134,6 @@ def allaudio(request):
     # template = loader.get_template('images/index.html')
     context = { 'latest_submissions': latest_submissions }
     return render(request, 'allaudio.html', context)
-
-
 
 def detailpost(request,id):
     submission = get_object_or_404(PostSubmission,pk=id)
