@@ -6,8 +6,12 @@
 
     <h3>{{submission.title}}</h3>
     <h5>Date : {{submission.pub_date|date:"D d M Y"}}</h5>
-    <h5>By : <a href="{%url 'artistdetail' submission.publisher %}">{{submission.publisher}}</h5></a>
-      
+    {%if liked%}
+        {%if liked.like == True%}
+        <h5>By : <a href="{%url 'artistdetail' submission.publisher %}">{{submission.publisher}}</h5></a>
+        {%endif%}
+    {%endif%}
+
     {%if submission.post_type == "1" %}
     <video width="420" height="340" controls>
                 <source src="{{ submission.content.url }}/" type="video/mp4">
