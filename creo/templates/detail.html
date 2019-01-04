@@ -8,7 +8,7 @@
     <h5>Date : {{submission.pub_date|date:"D d M Y"}}</h5>
     <h5>By : <a href="{%url 'artistdetail' submission.publisher %}">{{submission.publisher}}</h5></a>
       
-    {%if submission.video == True %}
+    {%if submission.post_type == "1" %}
     <video width="420" height="340" controls>
                 <source src="{{ submission.content.url }}/" type="video/mp4">
                 <source src="{{ submission.content.url }}/" type="video/ogg">
@@ -16,11 +16,11 @@
     </video>          
     {%endif%}
 
-    {%if submission.image == True %}
+    {%if submission.post_type == "0" %}
         <img src="{{ submission.content.url }}" style="width:50%;height:auto;">
     {%endif%}
 
-    {%if submission.audio == True %}
+    {%if submission.post_type == "2" %}
         <audio controls>
                 <source src="{{ submission.content.url }}/" type="audio/ogg">
                 <source src="{{ submission.content.url }}/" type="audio/mpeg">
