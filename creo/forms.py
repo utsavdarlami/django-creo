@@ -25,8 +25,8 @@ class UserForm(forms.ModelForm):
 class UserProfileInfoForm(forms.ModelForm):
     GENDER_CHOICES = (
    ('M', 'Male'),
-   ('F', 'Female')
-   ,('O','Other')
+   ('F', 'Female'),
+   ('O','Other')
    )   
     gender = forms.ChoiceField(choices=GENDER_CHOICES, widget=forms.RadioSelect())
     class Meta():
@@ -46,14 +46,9 @@ class LikePostButton(forms.ModelForm):
         exclude = ('post','publisher','pub_date',)
 
 class PostSubmissionForm(forms.ModelForm):
-    POST_CHOICES = (
-   (0, 'Image'),
-   (1, 'Video'),
-   (2,'Audio')
-   )   
+    POST_CHOICES = ((0, 'Image'),(1, 'Video'),(2,'Audio'))   
     title = forms.CharField(widget = forms.TextInput(attrs = {"class":"form-control is-valid", "id":"exampleInputUserName1","placeholder":"Enter Title"}))
-    post_type = forms.ChoiceField(choices=POST_CHOICES, widget=forms.RadioSelect())
-
+    post_type = forms.ChoiceField(choices=POST_CHOICES,label = "Choice The Type Of Content You Are Posting", widget=forms.RadioSelect(attrs={"type":"radio","id":"customRadio1","class":"custom-control-input"}),)
     class Meta():
         model = PostSubmission
         fields=('title','description','content','video','image','audio','post_type')
