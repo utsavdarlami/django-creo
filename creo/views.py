@@ -47,7 +47,7 @@ def user_logout(request):
 def profile(request):
     if request.user.is_authenticated:
         u = request.user
-        alluser = {"alluser":UserProfileInfo.objects.get(user=request.user),'u':u}
+        alluser = {"alluser":UserProfileInfo.objects.get(user=request.user),'u':u,"artistposts":PostSubmission.objects.filter(publisher=request.user)}
         return render(request,"profile.html",context=alluser)
     else:
         return HttpResponse("Please Login")
@@ -155,7 +155,6 @@ def detailpost(request,id):
 def artistdetail(request,publisher):
     artistinfo = get_object_or_404(User,username=publisher)
     artistinfo2 = get_object_or_404(UserProfileInfo,user_id=artistinfo.id)
-    print(artistinfo2)
     artistposts = PostSubmission.objects.filter(publisher_id=artistinfo.id)
     #form = CommentForm()
     return render(request, 'artistdetail.html', {'artistinfo': artistinfo,'artistinfo2': artistinfo2,'artistposts':artistposts})#, 'form': form})

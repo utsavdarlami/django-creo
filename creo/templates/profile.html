@@ -20,14 +20,55 @@
                         <li><h5>Mail id : {{u.email}}</h5></li>
                         <li><h5>pk : {{alluser.pk}}</h5></li>
                     </ul>
-                <h5>Bio :</h5><p>{{alluser.bio}}</p>
+
+                {%if alluser.bio%}
+                    <h5>Bio :</h5><p>{{alluser.bio}}</p>
+                {%endif%}
+
                 {%if alluser.resume%}
                     <a href={{alluser.resume.url}}><h3>Resume</h3></a>
                 {%endif%}
                 </div>
-              </div>
             </div>
+            {% if artistposts %}
+            <h3>My Posts</h3>
+            {% for submission in artistposts %}
+            <div class="row">  
+                  <div class="container"> 
+                  {%if submission.post_type == "1" %}
+                  <a href="{% url 'detailpost' submission.id %}">
+                  <video width="320" height="240" controls>
+                              <source src="{{ submission.content.url }}/" type="video/mp4">
+                              <source src="{{ submission.content.url }}/" type="video/ogg">
+                              Your browser does not support the video tag.
+                  </video>
+                  </a>          
+                  {%endif%}
 
+                  {%if submission.post_type == "0" %}
+                  <a href="{% url 'detailpost' submission.id %}"><img src="{{ submission.content.url }}/" width="400" padding="5"></a>
+                  {%endif%}
+
+                  {%if submission.post_type == "2" %}
+                  <a href="{% url 'detailpost' submission.id %}">
+                        <div class="container">
+                        <audio controls>
+                              <source src="{{ submission.content.url }}/" type="audio/ogg">
+                              <source src="{{ submission.content.url }}/" type="audio/mpeg">
+                              Your browser does not support the audio tag.
+                        </audio>
+                        </div>
+                  </a>
+                  {%endif%}
+                  </div> 
+                  <br>
+            </div>
+            {% endfor %}
+
+            {% else %}
+            <p>No submissions are available.</p>
+            {% endif %}
+            </div>
             <div class="btn-group" role="group" aria-label="Basic example">
             <form action="/creo/editprofile">
                 <input type="submit" class="btn btn-info" value="Update">
