@@ -8,13 +8,25 @@ class Testers(models.Model):
     email_id =  models.EmailField(max_length=264,unique=True)
     def __str__(self):
         return self.user_name
+
 class UserProfileInfo(models.Model):
+    GENDER_CHOICES = (
+   ('M', 'Male'),
+   ('F', 'Female')
+   ,('O','Other')
+   )   
+    gender = models.CharField(choices=GENDER_CHOICES, max_length=12,blank=True,default='M')
     user = models.OneToOneField(User,on_delete=models.CASCADE,)
     portfolio_site = models.URLField(blank=True)
     profile_pic = models.ImageField(upload_to ='profilepics',default="profilepics/default1.jpg", blank=True)
     def __str__(self):
         return self.user.username
 class PostSubmission(models.Model):
+    POST_CHOICES = (
+   (0, 'Image'),
+   (1, 'Video'),
+   (2,'Audio')
+   )   
     title = models.CharField(max_length=75)
     description = models.CharField(max_length=500)
     pub_date = models.DateTimeField(auto_now_add=True)
@@ -22,6 +34,7 @@ class PostSubmission(models.Model):
     video = models.BooleanField(default = False)
     image = models.BooleanField(default = False)
     audio = models.BooleanField(default = False)
+    post_type = models.CharField(choices=POST_CHOICES, max_length=12,blank=True,default=0)
     #content2  = models.FileField(upload_to = 'postedvideos',blank=True)
     publisher = models.ForeignKey(User,on_delete=models.CASCADE,)
     like_count = models.IntegerField(default=0)
