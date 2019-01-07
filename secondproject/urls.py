@@ -13,9 +13,10 @@ Including another URLconf
     1. Import the include() function: from django.urls import include, path
     2. Add a URL to urlpatterns:  path('blog/', include('blog.urls'))
 """
+#url request which is mapped to  functions of views.py( inside creo folder)
 from django.contrib import admin
 from django.urls import path
-from creo import views
+from creo import views #importing views.py in  creo folder
 from django.urls import path,include
 from django.conf import settings
 from django.conf.urls.static import static
@@ -23,9 +24,8 @@ from django.conf.urls.static import static
 app_name = "creo"
 urlpatterns = [
     path('admin/', admin.site.urls),
-    path('',views.homecreo,name="index"),
-    path('signin/',views.signin,name="signin"),
+    path('',views.homecreo,name="index"),#calls homecreo function of views.py
+    path('signin/',views.signin,name="signin"),#calls singin  function of views.py 
     
-
-    path('creo/',include('creo.urls')),
+    path('creo/',include('creo.urls')),#url for app =creo
 ]+ static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

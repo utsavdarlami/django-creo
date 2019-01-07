@@ -1,6 +1,7 @@
 from django.db import models
 from django.contrib.auth.models import User
 # Create your models here.
+# User Profile ,User ,Post,comments post  and   posts likes model declared 
 class UserProfileInfo(models.Model):
     GENDER_CHOICES = (
    ('M', 'Male'),

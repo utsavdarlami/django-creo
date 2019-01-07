@@ -1,11 +1,15 @@
+"""all the work and function is carried  out based on the request (mapped by urls.py)"""
 from django.shortcuts import render
 from django.shortcuts import get_object_or_404
 from django.db.models import F
 from django.template.loader import get_template
 from django.http import HttpResponse,HttpResponseRedirect
+#importing models from models.py
 from creo.models import UserProfileInfo,PostSubmission,CommentPost,Likes
 from django.contrib import messages
+#importing from  forms.py
 from creo.forms import UserForm,UserProfileInfoForm,CommentPostForm,LikePostButton,PostSubmissionForm,UserProfileInfoUpdateForm
+#importing class views
 from django.views.generic import DeleteView,CreateView,UpdateView
 from django.contrib.auth.models import User
 from django import forms
