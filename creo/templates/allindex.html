@@ -10,7 +10,7 @@
       <h3>{{submission.title}}</h3>
       <h5>Date : {{submission.pub_date|date:"D d M Y"}}</h5>
       <h5>views:{{submission.view_count}}</h5>
-      {%if submission.post_type == "1" %}
+      {%if submission.post_type == 1 %}
       <a href="{% url 'detailpost' submission.id %}">
       <video width="420" height="340" controls>
                   <source src="{{ submission.content.url }}/" type="video/mp4">
@@ -20,11 +20,11 @@
       </a>          
       {%endif%}
 
-      {%if submission.post_type == "0" %}
+      {%if submission.post_type == 0 %}
       <a href="{% url 'detailpost' submission.id %}"><img src="{{ submission.content.url }}/" width="400" padding="5"></a>
       {%endif%}
 
-      {%if submission.post_type == "2" %}
+      {%if submission.post_type == 2 %}
       <a href="{% url 'detailpost' submission.id %}">
             <div class="container">
             <audio controls>

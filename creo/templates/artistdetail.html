@@ -35,7 +35,7 @@
 
             <div class="row">  
                   <div class="container"> 
-                  {%if submission.post_type == "1" %}
+                  {%if submission.post_type == 1 %}
                   <a href="{% url 'detailpost' submission.id %}">
                   <video width="320" height="240" controls>
                               <source src="{{ submission.content.url }}/" type="video/mp4">
@@ -45,11 +45,11 @@
                   </a>          
                   {%endif%}
 
-                  {%if submission.post_type == "0" %}
+                  {%if submission.post_type == 0 %}
                   <a href="{% url 'detailpost' submission.id %}"><img src="{{ submission.content.url }}/" width="400" padding="5"></a>
                   {%endif%}
 
-                  {%if submission.post_type == "2" %}
+                  {%if submission.post_type == 2 %}
                   <a href="{% url 'detailpost' submission.id %}">
                         <div class="container">
                         <audio controls>
