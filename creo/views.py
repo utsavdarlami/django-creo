@@ -128,27 +128,61 @@ def UpdateProfile(request):
     else:
         return HttpResponse("Please Login")
 
-def homecreo(request):
+'''def homecreo(request):
     latest_submissions = PostSubmission.objects.order_by('-view_count','-like_count','-pub_date')
     # template = loader.get_template('images/index.html')
+    context = { 'latest_submissions': latest_submissions }
+    return render(request, 'allindex.html', context)'''
+
+def homecreo(request,slug=None):
+    if slug=='mostviewed':    
+        latest_submissions = PostSubmission.objects.order_by('-view_count','-like_count','-pub_date')
+    elif slug=='mostliked':
+        latest_submissions = PostSubmission.objects.order_by('-like_count','-pub_date','-view_count')
+    elif slug=='newest':
+        latest_submissions = PostSubmission.objects.order_by('-pub_date','-like_count','-view_count')
+    else:
+        latest_submissions = PostSubmission.objects.order_by('-view_count','-pub_date','-like_count')
+
     context = { 'latest_submissions': latest_submissions }
     return render(request, 'allindex.html', context)
 
-def allvideo(request):
-    latest_submissions = PostSubmission.objects.order_by('-view_count','-like_count','-pub_date')
-    # template = loader.get_template('images/index.html')
-    context = { 'latest_submissions': latest_submissions }
+def allvideo(request,slug=None):
+    if slug=='mostviewed':    
+        latest_submissions = PostSubmission.objects.order_by('-view_count','-like_count','-pub_date')
+    elif slug=='mostliked':
+        latest_submissions = PostSubmission.objects.order_by('-like_count','-pub_date','-view_count')
+    elif slug=='newest':
+        latest_submissions = PostSubmission.objects.order_by('-pub_date','-like_count','-view_count')
+    else:
+        latest_submissions = PostSubmission.objects.order_by('-view_count','-pub_date','-like_count')
+
+    context = { 'latest_submissions': latest_submissions }    # template = loader.get_template('images/index.html')
     return render(request, 'allvideo.html', context)
 
-def allimage(request):
-    latest_submissions = PostSubmission.objects.order_by('-view_count','-like_count','-pub_date')
-    # template = loader.get_template('images/index.html')
+def allimage(request,slug=None):
+    if slug=='mostviewed':    
+        latest_submissions = PostSubmission.objects.order_by('-view_count','-like_count','-pub_date')
+    elif slug=='mostliked':
+        latest_submissions = PostSubmission.objects.order_by('-like_count','-pub_date','-view_count')
+    elif slug=='newest':
+        latest_submissions = PostSubmission.objects.order_by('-pub_date','-like_count','-view_count')
+    else:
+        latest_submissions = PostSubmission.objects.order_by('-view_count','-pub_date','-like_count')
+
     context = { 'latest_submissions': latest_submissions }
     return render(request, 'allimage.html', context)
     
-def allaudio(request):
-    latest_submissions = PostSubmission.objects.order_by('-view_count','-like_count','-pub_date')
-    # template = loader.get_template('images/index.html')
+def allaudio(request,slug=None):
+    if slug=='mostviewed':    
+        latest_submissions = PostSubmission.objects.order_by('-view_count','-like_count','-pub_date')
+    elif slug=='mostliked':
+        latest_submissions = PostSubmission.objects.order_by('-like_count','-pub_date','-view_count')
+    elif slug=='newest':
+        latest_submissions = PostSubmission.objects.order_by('-pub_date','-like_count','-view_count')
+    else:
+        latest_submissions = PostSubmission.objects.order_by('-view_count','-pub_date','-like_count')
+
     context = { 'latest_submissions': latest_submissions }
     return render(request, 'allaudio.html', context)
 

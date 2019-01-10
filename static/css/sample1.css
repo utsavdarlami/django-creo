@@ -2,20 +2,35 @@
 {
   max-width:600px;
   border:5px white;
-  border-style: groove;
+  border-style: hidden;
   padding:25px;
   padding-top:15px;
+  padding-bottom: 60px;
   margin:100px;
   display: block;
   margin-left: auto;
   margin-right: auto;
+  position: relative;
 }
 
 .edit2
 {
   border-top: 5px white;
   border-top-style: ridge;
-  margin-top: 10px;
+}
+
+.edit3
+{
+  max-width:600px;
+  border:5px white;
+  border-style:ridge;
+  padding:25px;
+  padding-top:15px;
+  padding-bottom:60px;
+  margin:100px;
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
 }
 
 #img1
@@ -26,6 +41,7 @@
   margin: auto;
   padding: auto;
   border:5px solid black;
+  border-style: hidden;
 }
 
 
@@ -57,28 +73,30 @@
 
 }
 
-*{
-  box-sizing: border-box;
-}
-            
-.rows {
-  display: -ms-flexbox; /* IE 10 */
-  display: flex;
-  -ms-flex-wrap: wrap; /* IE 10 */
-  flex-wrap: wrap;
-  padding: 0 4px;
-}
-
-/* Create two equal columns that sits next to each other */
-.column {
-  -ms-flex: 50%; /* IE 10 */
-  flex: 50%;
-  max-width: 400px;
-  padding: 0 4px;
+.overlay
+{
+  position: absolute; 
+  bottom: 0; 
+  background: rgb(0, 0, 0);
+  background: rgba(0, 0, 0, 0.5); /* Black see-through */
+  color: #f1f1f1; 
+  width: 91.7%;
+  transition: .5s ease;
+  opacity:0;
+  color: white;
+  font-size: 15px;
+  padding:14px;
+  margin-bottom:10px;
+  text-align: center;
 }
 
-.column img {
-  margin-top: 8px;
-  max-width: 400px;
-  vertical-align: middle;
+/* When you mouse over the container, fade in the overlay title */
+.edit1:hover .overlay {
+  opacity: 1;
+}
+
+#font1
+{
+  font-family: 'Noto Serif', serif;
+  font-size: 40px;
 }
