@@ -5,8 +5,11 @@
 <head>
 	<title>Creo</title>
 	<meta charset="UTF-8">
-
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" type="text/css" href="{% static '/css/intro.css' %}">
+    <link rel="stylesheet" type="text/css" href="{% static '/css/sample1.css' %}">
+    <link rel="stylesheet" type="text/css" href="{% static '/css/logsign.css' %}">
+
 	<meta name="viewport" content="width=device-width, initial-scale=1">
 	
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
@@ -24,6 +27,7 @@
   <p style="font-size: 30px;">Welcome To Creativity!</p>
 </div>
 <div class="first">
+    <div class="container">
         <nav class="navbar navbar-default narvbar-brand navbar-fixed">    
         <div class="container-fluid abc">
             <ul class="nav navbar-nav">
@@ -37,10 +41,10 @@
             <ul class="nav navbar-nav navbar-right">
                 {%if user.is_authenticated%}
                     <li class="nav-item">
-                        <a class="nav-item nav-link" href="{% url "profile" %}">Profile</a>
+                        <a class="nav-item nav-link" href="{% url "profile" %}" style="color:whitesmoke;">Profile</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-item nav-link" href="{% url "user_logout" %}">Log Out</a>
+                        <a class="nav-item nav-link" href="{% url "user_logout" %}" style="color:whitesmoke;">Log Out</a>
                     </li>
                 {%block navcontents%}
                 {%endblock%}
@@ -55,6 +59,7 @@
             </ul>
         </div>
         </nav>
+        </div>
 </div>
 
     <div class="container">

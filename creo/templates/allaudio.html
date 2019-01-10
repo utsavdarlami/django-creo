@@ -7,19 +7,23 @@
 
 <div class="row">
       {%if submission.post_type == 2 %}
-      <h3>{{submission.title}}</h3>
-      <h5>Date : {{submission.pub_date|date:"D d M Y"}}</h5>
-      <h5>views:{{submission.view_count}}</h5>
+      <div class="edit1">
+      <h3 id="box1">{{submission.title}}</h3>
       <a href="{% url 'detailpost' submission.id %}">
             <div class="container">
-            <audio controls>
-                  <source src="{{ submission.content.url }}/" type="audio/ogg">
-                  <source src="{{ submission.content.url }}/" type="audio/mpeg">
-                  Your browser does not support the audio tag.
-            </audio>
+                        <audio controls>
+                                    <source src="{{ submission.content.url }}/" type="audio/ogg" style="max-width:100%; height:auto;">
+                                    <source src="{{ submission.content.url }}/" type="audio/mpeg" style="max-width:100%; height:auto;">
+                                    Your browser does not support the audio tag.
+                            </audio>
             </div>
       </a>
+      <div class="edit2">
       <h5>Caption : {{submission.description}}</h5>
+      <h5>Date : {{submission.pub_date|date:"D d M Y"}}</h5>
+      <h5>views:{{submission.view_count}}</h5>
+      </div>
+      </div>
       {%endif%}
 </div>
 {% endfor %}

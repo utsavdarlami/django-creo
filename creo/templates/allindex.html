@@ -6,37 +6,49 @@
 {% for submission in latest_submissions %}
 
 <div class="row">
-      
-      <h3>{{submission.title}}</h3>
-      <h5>Date : {{submission.pub_date|date:"D d M Y"}}</h5>
-      <h5>views:{{submission.view_count}}</h5>
-      {%if submission.post_type == 1 %}
-      <a href="{% url 'detailpost' submission.id %}">
-      <video width="420" height="340" controls>
-                  <source src="{{ submission.content.url }}/" type="video/mp4">
-                  <source src="{{ submission.content.url }}/" type="video/ogg">
-                  Your browser does not support the video tag.
-      </video>
-      </a>          
+            {%if submission.post_type == 1 %}
+            <div class="edit1">
+            <h3 id="box1">{{submission.title}}</h3>
+            <a href="{% url 'detailpost' submission.id %}">
+            <video id="video1" controls>
+                        <source src="{{ submission.content.url }}/" type="video/mp4">
+                        <source src="{{ submission.content.url }}/" type="video/ogg">
+                        Your browser does not support the video tag.
+            </video>
+            </a>                
+            <div class="edit2">
+            <h5>Caption : {{submission.description}}</h5>
+            </div>
+            </div>
       {%endif%}
 
       {%if submission.post_type == 0 %}
-      <a href="{% url 'detailpost' submission.id %}"><img src="{{ submission.content.url }}/" width="400" padding="5"></a>
+      <div class="edit1">
+                  <h3 id="box1">{{submission.title}}</h3>
+                  <a href="{% url 'detailpost' submission.id %}"><img id="img1" src="{{ submission.content.url }}/"></a>
+                  <div class="edit2">
+                  <h5>Caption : {{submission.description}}</h5>
+                  </div>
+            </div>
       {%endif%}
 
       {%if submission.post_type == 2 %}
+      <div class="edit1">
+      <h3 id="box1">{{submission.title}}</h3>
       <a href="{% url 'detailpost' submission.id %}">
             <div class="container">
-            <audio controls>
-                  <source src="{{ submission.content.url }}/" type="audio/ogg">
-                  <source src="{{ submission.content.url }}/" type="audio/mpeg">
-                  Your browser does not support the audio tag.
-            </audio>
+                        <audio controls>
+                                    <source src="{{ submission.content.url }}/" type="audio/ogg" style="max-width:100%; height:auto;">
+                                    <source src="{{ submission.content.url }}/" type="audio/mpeg" style="max-width:100%; height:auto;">
+                                    Your browser does not support the audio tag.
+                            </audio>
             </div>
       </a>
-      {%endif%}
-
+      <div class="edit2">
       <h5>Caption : {{submission.description}}</h5>
+      </div>
+      </div>
+      {%endif%}
 </div>
 {% endfor %}
 

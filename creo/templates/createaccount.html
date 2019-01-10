@@ -4,7 +4,9 @@
             {%if registered%}
                 <h3>Account Created !</h3>
             {%else%}
+            <div class="edit1">
             <form enctype="multipart/form-data" method="POST">
+        
                 <h3>Create Account</h3>
                 {%csrf_token%}
                 {{ user_form.non_field_errors }}
@@ -13,6 +15,7 @@
                 {{profile_form.as_p}}
                 <input type="submit" class="btn btn-primary" value = "Create">
             </form>
+            </div>
             {%endif%}
         </div>
 {% endblock %}

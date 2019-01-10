@@ -7,13 +7,16 @@
 
 <div class="row">
       {%if submission.post_type == 0 %}
-            <h3>{{submission.title}}</h3>
+      <div class="edit1">
+            <h3 id="box1">{{submission.title}}</h3>
+            <a href="{% url 'detailpost' submission.id %}"><img id="img1" src="{{ submission.content.url }}/"></a>
+            <div class="edit2">
+            <h5>Caption : {{submission.description}}</h5>
             <h5>Date : {{submission.pub_date|date:"D d M Y"}}</h5>
             <h5>views:{{submission.view_count}}</h5>
-            <a href="{% url 'detailpost' submission.id %}"><img src="{{ submission.content.url }}/" width="400" padding="5"></a>
-            <h5>Caption : {{submission.description}}</h5>
+            </div>
+      </div>
       {%endif%}
-
 </div>
 {% endfor %}
 {% else %}
