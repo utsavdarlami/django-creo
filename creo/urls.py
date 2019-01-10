@@ -7,6 +7,7 @@ urlpatterns = [
     path('signout/',views.user_logout,name="user_logout"),#calls user_logout function of views.py
     path('createaccount/',views.create_user,name="createaccount"),#calls create_user function of views.py
     path('',views.homecreo,name="homecreo"),#calls homecreo function of views.py
+    path('testurl/<slug:slug>/',views.testurl,name="testurl"),
     path('testurl/',views.testurl,name="testurl"),
     path('photos/',views.allimage,name="allimage"),#calls allimage function of views.py
     path('videos/',views.allvideo,name="allvideo"),#calls allvideo function of views.py
