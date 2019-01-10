@@ -20,6 +20,11 @@ from django.urls import reverse,reverse_lazy
 from django import forms
 
 # Create your views here.
+def testurl(request):
+    latest_submissions = PostSubmission.objects.order_by('-view_count','-like_count','-pub_date')
+    # template = loader.get_template('images/index.html')
+    context = { 'latest_submissions': latest_submissions }
+    return render(request, 'testurl.html', context)
 
 def index(request):
     return render(request,"index.html")
