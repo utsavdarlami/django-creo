@@ -98,6 +98,7 @@ not completed
 - Create A Virtual Environment 
 Inside Virtual Environment
 $ pip install -r requirements.txt
+--> remove STATIC_ROOT in line (127 and 130) and STATICFILES_STORAGE in line 125 from settings.py
 $ python manage.py runserver
 
 ```
