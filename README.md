@@ -1,7 +1,8 @@
 # django-creo
-creo 
+creo  https://creoverse.herokuapp.com/
     
     image,video and art sharing platform
+    * *Like The Posts to Know about the Artist*
 
 
 not completed 
