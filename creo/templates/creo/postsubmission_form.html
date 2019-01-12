@@ -1,4 +1,5 @@
 {%extends "base.html"%}
+{%load bootstrap3}
 {%block contents%}
         <div class="jumbotron">
             {%if user.is_authenticated%}        
@@ -6,7 +7,7 @@
                     <h4>POST YOUR CONTENT</h4>
                     {%csrf_token%}
                     {{form.non_field_errors }}
-                    {{form.as_p}}
+                    {%bootstrap_form form%}
                     <input type="submit" class="btn btn-primary" value = "Post">
                 </form>
             {%else%}
