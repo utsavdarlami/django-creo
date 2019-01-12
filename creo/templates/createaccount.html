@@ -1,4 +1,5 @@
 {%extends "base.html"%}
+{%load bootstrap3}
 {%block contents%}
         <div class="jumbotron">
             {%if registered%}
@@ -11,8 +12,8 @@
                 {%csrf_token%}
                 {{ user_form.non_field_errors }}
                 {{ profile.non_field_errors }}
-                {{user_form.as_p}}
-                {{profile_form.as_p}}
+                {%bootstrap_form user_form%}
+                {%bootstrap_form profile_form%}
                 <input type="submit" class="btn btn-primary" value = "Create">
             </form>
             </div>
