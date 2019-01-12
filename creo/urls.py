@@ -2,7 +2,6 @@ from django.urls import path
 from . import views
 #url request which is mapped to  functions of views.py( inside creo folder)
 urlpatterns = [
-    path('users/',views.all_user,name="allusers"),#calls all_user function of views.py
     path('profile/',views.profile,name="profile"),#calls profile function of views.py
     path('signout/',views.user_logout,name="user_logout"),#calls user_logout function of views.py
     path('createaccount/',views.create_user,name="createaccount"),#calls create_user function of views.py
@@ -20,6 +19,8 @@ urlpatterns = [
     path('userupdate/<int:pk>',views.UserUpdateView.as_view(),name="updateprofile"),#calls UserUpdateView Update class View of views.py
     path('portfolioupdate/<int:pk>',views.UserProfileUpdateView.as_view(),name="updateportfolio"),#calls UserProfileUpdateView  Update class vier function of views.py
     path('editprofile/',views.UpdateProfile,name="updateprofile"),#calls UpdateProfile function of views.py
+    path('posts/<int:pk>/update/',views.PostUpdateView.as_view(),name="updatepost"),#calls UpdateProfile function of views.py
+    path('posts/<int:pk>/delete/',views.PostDeleteView.as_view(),name="deletepost"),#calls UpdateProfile function of views.py
     path('post/',views.PostFormView.as_view(),name="post"),#calls PostFormView create class view of views.py
     path('posts/<int:id>/',views.detailpost,name="detailpost"),#calls detailpost function of views.py
     path('<int:id>/comment/',views.addcomment,name="addcomment"),#calls addcomment function of views.py

@@ -3,6 +3,18 @@
 {% block contents %}
 
 <div class="jumbotron">
+    {%if request.user == submission.publisher%}
+        <div class="btn-group" role="group" aria-label="Basic example">
+                    <form action="update/">
+                        <input type="submit" class="btn btn-info" value="Update">
+                    </form>
+        </div>
+        <div class="btn-group" role="group" aria-label="Basic example">
+                <form action="delete/">
+                    <input type="submit" class="btn btn-danger" value="Delete">
+                </form>
+        </div>
+    {%endif%} 
     <div class="edit3">
     <h1 id="font1">{{submission.title}}</h1>
     <p id="box1" style="font-family:'Noto Serif', serif; font-weight:bold; font-size:15px;">Date : {{submission.pub_date|date:"D d M Y"}}</p>

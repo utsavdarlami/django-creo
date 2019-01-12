@@ -1,0 +1,38 @@
+{%extends "base.html"%}
+{%block contents%}
+
+<div class="jumbotron">
+    Are You Sure You Want To Delete This Post<span><h6>Note : It cannot be restored later</h6></span>
+        <form method="POST">
+            <input type="submit" class="btn btn-danger" value="Confirm">
+                {%csrf_token%}
+                <a href="/creo/posts/{{postsubmission.id}}">Cancel</a>
+         </form>
+    <div class="edit3">
+    <h1 id="font1">{{postsubmission.title}}</h1>
+    <p id="box1" style="font-family:'Noto Serif', serif; font-weight:bold; font-size:15px;">Date : {{postsubmission.pub_date|date:"D d M Y"}}</p>
+    
+    {%if postsubmission.post_type == 1 %}
+    <video id="video1" controls>
+                <source src="{{ postsubmission.content.url }}/" type="video/mp4">
+                <source src="{{ postsubmission.content.url }}/" type="video/ogg">
+                Your browser does not support the video tag.
+    </video> 
+    {%endif%}
+
+    {%if postsubmission.post_type == 0 %}
+        <img id="img1" src="{{ postsubmission.content.url }}">
+    {%endif%}
+
+    {%if postsubmission.post_type == 2 %}
+        <audio controls>
+            <source src="{{ postsubmission.content.url }}/" type="audio/ogg" style="max-width:100%; height:auto;">
+                <source src="{{ postsubmission.content.url }}/" type="audio/mpeg" style="max-width:100%; height:auto;">
+                Your browser does not support the audio tag.
+        </audio>    
+    {%endif%}
+    <h5 style="font-family:'Noto Serif', serif; font-weight:bold; font-size:18px;">{{postsubmission.description}}</h5>
+
+</div>
+
+{% endblock %}

@@ -69,13 +69,6 @@ def profile(request):
     else:
         return HttpResponse("Please Login")
 
-def all_user(request):
-    alluser = {"user_list":UserProfileInfo.objects.all}
-    if not alluser:
-        return render(request,"user.html")
-    else:
-        return render(request,"user.html",context=alluser)
-
 def create_user(request):
     registered  = False
     user_form = UserForm()
@@ -118,6 +111,16 @@ class PostFormView(CreateView):
     def form_valid(self, form):
         form.instance.publisher = self.request.user
         return super().form_valid(form)
+class PostUpdateView(UpdateView):
+    model= PostSubmission
+    fields=('title','description',)
+    success_url = reverse_lazy("profile")
+    def form_valid(self, form):
+        form.instance.publisher = self.request.user
+        return super().form_valid(form)
+class PostDeleteView(DeleteView):
+    model = PostSubmission
+    success_url = reverse_lazy("profile")
 
 @login_required
 def UpdateProfile(request):
