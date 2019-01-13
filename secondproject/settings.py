@@ -23,7 +23,7 @@ BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 SECRET_KEY = '2-u(l#v-7kka5m=$$==gtopavr#(6il1-4xc6c7%j)pk7r+2xh'
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = Ture
+DEBUG = True
 
 ALLOWED_HOSTS = ['0.0.0.0','127.0.0.1','creoverse.herokuapp.com']
 
