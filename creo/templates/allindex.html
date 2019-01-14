@@ -1,7 +1,8 @@
 {% extends "base.html" %}
 
 {% block contents %}
-<div class="jumbotron">
+<div class="jumbotron" style="background-color:#FFEBCD !important;">
+
       <nav class="navbar navbar-default">
             <div class="container-fluid"  style="background-color:#EEEEEE";>
             <!-- Brand and toggle get grouped for better mobile display -->      
@@ -18,8 +19,10 @@
                   </li>
                   </ul>
             </div><!-- /.navbar-collapse -->
-            </div><!-- /.container-fluid -->
-      </nav>
+      </div><!-- /.container-fluid -->
+</nav>
+
+
 {% if latest_submissions %}
 {% for submission in latest_submissions %}
 
@@ -66,4 +69,3 @@
 </div>
 {% endif %}
 {% endblock %}
-

@@ -2,26 +2,27 @@
 
 {% block contents %}
 <div class="jumbotron">
-      <nav class="navbar navbar-default">
-                  <div class="container-fluid"  style="background-color:#EEEEEE";>
-                  <!-- Brand and toggle get grouped for better mobile display -->      
-                  <!-- Collect the nav links, forms, and other content for toggling -->
-                  <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
-                        <ul class="nav navbar-nav navbar-right">
-                        <li class="dropdown">
-                        <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Filter<span class="caret"></span></a>
-                        <ul class="dropdown-menu">
-                              <li><a href="{%url 'allimage' slug='mostview' %}">Most Viewd</a></li>
-                              <li><a href="{%url 'allimage' slug='newest'%}">New</a></li>
-                              <li><a href="{%url 'allimage' slug='mostliked'%}">Most Liked</a></li>
-                        </ul>
-                        </li>
-                        </ul>
-                  </div><!-- /.navbar-collapse -->
+            <nav class="navbar navbar-default">
+                        <div class="container-fluid"  style="background-color:#EEEEEE";>
+                        <!-- Brand and toggle get grouped for better mobile display -->      
+                        <!-- Collect the nav links, forms, and other content for toggling -->
+                        <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+                              <ul class="nav navbar-nav navbar-right">
+                              <li class="dropdown">
+                              <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Filter<span class="caret"></span></a>
+                              <ul class="dropdown-menu">
+                                    <li><a href="{%url 'homecreo' slug='mostview' %}">Most Viewd</a></li>
+                                    <li><a href="{%url 'homecreo' slug='newest'%}">New</a></li>
+                                    <li><a href="{%url 'homecreo' slug='mostliked'%}">Most Liked</a></li>
+                              </ul>
+                              </li>
+                              </ul>
+                        </div><!-- /.navbar-collapse -->
                   </div><!-- /.container-fluid -->
-      </nav>
+            </nav>
 {% if latest_submissions %}
 {% for submission in latest_submissions %}
+
 <div class="row">
       {%if submission.post_type == 0 %}
       <div class="edit1">
@@ -36,4 +37,3 @@
 </div>
 {% endif %}
 {% endblock %}
-      

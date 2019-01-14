@@ -11,30 +11,31 @@
                               <li class="dropdown">
                               <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Filter<span class="caret"></span></a>
                               <ul class="dropdown-menu">
-                                    <li><a href="{%url 'allvideo' slug='mostview' %}">Most Viewd</a></li>
-                                    <li><a href="{%url 'allvideo' slug='newest'%}">New</a></li>
-                                    <li><a href="{%url 'allvideo' slug='mostliked'%}">Most Liked</a></li>
+                                    <li><a href="{%url 'homecreo' slug='mostview' %}">Most Viewd</a></li>
+                                    <li><a href="{%url 'homecreo' slug='newest'%}">New</a></li>
+                                    <li><a href="{%url 'homecreo' slug='mostliked'%}">Most Liked</a></li>
                               </ul>
                               </li>
                               </ul>
                         </div><!-- /.navbar-collapse -->
-                        </div><!-- /.container-fluid -->
-                  </nav>
+                  </div><!-- /.container-fluid -->
+            </nav>
 {% if latest_submissions %}
 {% for submission in latest_submissions %}
+
 <div class="row">
-            {%if submission.post_type == 1 %}
-                  <div class="edit1">
-                  <a href="{% url 'detailpost' submission.id %}">
-                  <video id="video1" controls>
-                              <source src="{{ submission.content.url }}/" type="video/mp4">
-                              <source src="{{ submission.content.url }}/" type="video/ogg">
-                              Your browser does not support the video tag.
-                  </video>
-                  </a>                
-                  <div class="overlay">{{submission.title}}</div>
-            {%endif%}
-      
+      {%if submission.post_type == 1 %}
+            <div class="edit1">
+            <a href="{% url 'detailpost' submission.id %}">
+            <video id="video1" controls>
+                        <source src="{{ submission.content.url }}/" type="video/mp4">
+                        <source src="{{ submission.content.url }}/" type="video/ogg">
+                        Your browser does not support the video tag.
+            </video>
+            </a>                
+            <div class="overlay">{{submission.title}}</div>
+      {%endif%}
+
 </div>
 {% endfor %}
 
