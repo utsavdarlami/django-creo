@@ -2,6 +2,7 @@
 {%load bootstrap3%}
 {%block contents%}
         <div class="jumbotron">
+                
             {%if user.is_authenticated%}        
                 <form enctype="multipart/form-data" method="POST">
                     <h4>POST YOUR CONTENT</h4>
@@ -24,4 +25,5 @@
             </div>
             {%endif%}
         </div>
+        
 {% endblock %}

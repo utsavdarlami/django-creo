@@ -1,10 +1,8 @@
 .edit1
 {
   max-width:600px;
-  border:5px white;
-  border-style:hidden;
-  padding:25px;
-  padding-top:20px;
+  border:5px black;
+  border-style:groove;
   padding-bottom: 60px;
   margin:50px;
   display: block;
@@ -39,6 +37,13 @@
   max-width:600px;
   height: 200px;
   overflow: auto;
+}
+
+.edit5
+{
+  border:3px white;
+  border-style:groove;
+  padding:3px;
 }
 
 #img1
@@ -88,7 +93,7 @@
   background: rgb(0, 0, 0);
   background: rgba(0, 0, 0, 0.5); /* Black see-through */
   color: #f1f1f1; 
-  width: 91.7%;
+  width: 100%;
   transition: .5s ease;
   opacity:0;
   color: white;
