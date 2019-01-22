@@ -48,8 +48,6 @@
   display:block;
   margin: auto;
   padding: auto;
-  border:5px solid black;
-  border-style: hidden;
 }
 
 
@@ -60,7 +58,6 @@
   display:block;
   margin: auto;
   padding: auto;
-  border:5px solid black;
 }
 
 
@@ -71,7 +68,6 @@
   display:block;
   margin: auto;
   padding: auto;
-  border:5px solid black;
 }
 
 #box1
@@ -81,7 +77,27 @@
 
 }
 
+.overlay
+{
+  position: absolute; 
+  bottom: 0; 
+  background: rgb(0, 0, 0);
+  background: rgba(0, 0, 0, 0.5); /* Black see-through */
+  color: #f1f1f1; 
+  width: 91.7%;
+  transition: .5s ease;
+  opacity:0;
+  color: white;
+  font-size: 15px;
+  padding:14px;
+  margin-bottom:10px;
+  text-align: center;
+}
 
+/* When you mouse over the container, fade in the overlay title */
+.edit1:hover .overlay {
+  opacity: 1;
+}
 
 #font1
 {
