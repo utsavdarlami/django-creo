@@ -19,15 +19,14 @@
       {%if submission.post_type == 2 %}
       <div class="edit1">
       <a href="{% url 'detailpost' submission.id %}">
-            <div class="container">
                         <audio controls>
                                     <source src="{{ submission.content.url }}/" type="audio/ogg" style="max-width:100%; height:auto;">
                                     <source src="{{ submission.content.url }}/" type="audio/mpeg" style="max-width:100%; height:auto;">
                                     Your browser does not support the audio tag.
-                              </audio>
-            </div>
+                            </audio>
+                            <div class="overlay">{{submission.title}}</div>
       </a>
-      <div class="overlay">{{submission.title}}</div>
+      </div>
       {%endif%}
 </div>
 {% endfor %}
