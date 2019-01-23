@@ -26,14 +26,14 @@
 <div class="row">
             {%if submission.post_type == 1 %}
             <div class="edit1">
-            <a href="{% url 'detailpost' submission.id %}">
-            <video id="video1" controls>
-                        <source src="{{ submission.content.url }}/" type="video/mp4">
-                        <source src="{{ submission.content.url }}/" type="video/ogg">
-                        Your browser does not support the video tag.
-            </video>
-            <div class="overlay">{{submission.title}}</div>
-            </a>  
+                  <a href="{% url 'detailpost' submission.id %}">
+                        <video id="video1" controls>
+                                    <source src="{{ submission.content.url }}/" type="video/mp4">
+                                    <source src="{{ submission.content.url }}/" type="video/ogg">
+                                    Your browser does not support the video tag.
+                        </video>
+                        <div class="overlay">{{submission.title}}</div>
+                  </a>  
             </div>              
       {%endif%}
 
@@ -47,7 +47,7 @@
       {%endif%}
 
       {%if submission.post_type == 2 %}
-      <div class="edit1">
+      <!-- <div class="edit1">
       <a href="{% url 'detailpost' submission.id %}">
                         <audio controls>
                                     <source src="{{ submission.content.url }}/" type="audio/ogg" style="max-width:100%; height:auto;">
@@ -56,7 +56,45 @@
                             </audio>
                             <div class="overlay">{{submission.title}}</div>
       </a>
-      </div>
+      </div> -->
+      <!-- <div class="edit1" >
+                  <div class="container"  >
+                        <span style="padding-left:40%;">
+                              <i class="fas fa-music fa-8x"></i>
+                        </span>
+                  </div>
+            <a href="{% url 'detailpost' submission.id %}">
+                  <div class="container">
+                        <div class="container" style="padding-left: 100px;">
+                              <audio controls >
+                                          <source src="{{ submission.content.url }}/" type="audio/ogg" style="max-width:100%; height:auto;">
+                                          <source src="{{ submission.content.url }}/" type="audio/mpeg" style="max-width:100%; height:auto;">
+                                          Your browser does not support the audio tag.
+                                    </audio>
+                              </div>
+                  </div>
+            </a>
+            <div class="overlay">{{submission.title}}</div>  -->
+      <div class="edit1">
+                  <div class="container" style="text-align: center;">
+                        <span style=" display: inline-block;" >
+                              <i class="fas fa-music fa-10x"></i>
+                        </span>
+                        <p></p>
+                  </div>
+            <a href="{% url 'detailpost' submission.id %}">
+                  <!-- <div class="container"> -->
+                  <div style="text-align: center;">
+                        <div class="container" style=" display: inline-block; ">
+                              <audio controls >
+                                    <source src="{{ submission.content.url }}/" type="audio/ogg" style="max-width:100%; height:auto;">
+                                    <source src="{{ submission.content.url }}/" type="audio/mpeg" style="max-width:100%; height:auto;">
+                                    Your browser does not support the audio tag.
+                              </audio>
+                        </div>
+            </div>
+            </a>
+            <div class="overlay">{{submission.title}}</div> 
       {%endif%}
 </div>
 {% endfor %}

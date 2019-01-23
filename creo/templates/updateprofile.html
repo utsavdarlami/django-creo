@@ -1,6 +1,6 @@
 {%extends "base.html"%}
 {%block contents%}
-
+    
         <div class="jumbotron">
            <!-- {%if alluser%}
                 <h6>{{alluser.user}}</h6>
@@ -18,16 +18,17 @@
                 </div>
               </div>
             </div>
-
-            <div class="btn-group" role="group" aria-label="Basic example">
-            <form action="/creo/delete/{{u.pk}}">
-                    <input type="submit" class="btn btn-danger" value="Delete">
-            </form>
-            <form action="/creo/userupdate/{{u.pk}}">
-                <input type="submit" class="btn btn-info" value="Update Email">
-            </form>
-            <form action="/creo/portfolioupdate/{{alluser.pk}}">
-                <input type="submit" class="btn btn-info" value="Update Portfolio">
-            </form>
+            <div>
+                <div class="btn-group" role="group" aria-label="Basic example">
+                <form action="/creo/delete/{{u.pk}}" style="display: inline;">
+                        <input type="submit" class="btn btn-danger" value="Delete" >
+                </form>
+                <form action="/creo/userupdate/{{u.pk}}" style="display: inline;">
+                    <input type="submit" class="btn btn-info" value="Update Email">
+                </form>
+                <form action="/creo/portfolioupdate/{{alluser.pk}}" style="display: inline;">
+                    <input type="submit" class="btn btn-info" value="Update Portfolio">
+                </form>
+                </div>
             </div>
 {% endblock %}
