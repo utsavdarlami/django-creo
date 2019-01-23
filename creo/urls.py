@@ -5,16 +5,22 @@ urlpatterns = [
     path('profile/',views.profile,name="profile"),#calls profile function of views.py
     path('signout/',views.user_logout,name="user_logout"),#calls user_logout function of views.py
     path('createaccount/',views.create_user,name="createaccount"),#calls create_user function of views.py
+    
     path('',views.homecreo,name="homecreo"),#calls homecreo function of views.py
     path('$<slug:slug>/',views.homecreo,name="homecreo"),
+    
     path('testurl/<slug:slug>/',views.testurl,name="testurl"),
     path('testurl/',views.testurl,name="testurl"),
+    
     path('photos/',views.allimage,name="allimage"),#calls allimage function of views.py
     path('photos/$<slug:slug>/',views.allimage,name="allimage"),#calls allimage function of views.py
+    
     path('videos/',views.allvideo,name="allvideo"),#calls allvideo function of views.py
     path('videos/$<slug:slug>/',views.allvideo,name="allvideo"),#calls allvideo function of views.py
+    
     path('audios/',views.allaudio,name="allaudio"),#calls allaudio function of views.py
     path('audios/$<slug:slug>/',views.allaudio,name="allaudio"),#calls allaudio function of views.py
+    
     path('delete/<int:pk>',views.UserDeleteView.as_view(),name="deleteconfirm"),#calls UserDeleteView Delete class View of views.py
     path('userupdate/<int:pk>',views.UserUpdateView.as_view(),name="updateprofile"),#calls UserUpdateView Update class View of views.py
     path('portfolioupdate/<int:pk>',views.UserProfileUpdateView.as_view(),name="updateportfolio"),#calls UserProfileUpdateView  Update class vier function of views.py
