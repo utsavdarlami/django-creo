@@ -4,7 +4,7 @@
   border:5px white;
   border-style:hidden;
   padding:25px;
-  padding-top:20px;
+  padding-top:10px;
   padding-bottom: 60px;
   margin:50px;
   display: block;
@@ -41,6 +41,10 @@
   overflow: auto;
 }
 
+.edit5{
+  margin-left: auto;
+  margin-right: auto;
+}
 #img1
 {
   max-width:100%;
@@ -103,4 +107,18 @@
 {
   font-family: 'Noto Serif', serif;
   font-size: 40px;
+}
+
+
+#font2
+{
+  font-family: 'Didact Gothic', sans-serif;
+
+}
+
+.boxshadow1
+{
+  border: 1px solid whitesmoke;
+  padding: 10px;
+  box-shadow: #888888;
 }

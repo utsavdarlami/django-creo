@@ -1,6 +1,6 @@
 {%extends "base.html"%}
 {%block contents%}
-        <div class="jumbotron">
+        <div class="jumbotron" style="background-color:#dbd9d9 !important;">
             {%if user_list%}
                 {%for user in user_list%}
                 <h6>{{user.user.username}}</h6><img src="{{user.profile_pic.url}}" class="img-thumbnail" alt="user profile pic" width="200">
