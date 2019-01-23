@@ -5,7 +5,7 @@ urlpatterns = [
     path('profile/',views.profile,name="profile"),#calls profile function of views.py
     path('signout/',views.user_logout,name="user_logout"),#calls user_logout function of views.py
     path('createaccount/',views.create_user,name="createaccount"),#calls create_user function of views.py
-    
+    path('notification/',views.notification,name="notification"),
     path('',views.homecreo,name="homecreo"),#calls homecreo function of views.py
     path('$<slug:slug>/',views.homecreo,name="homecreo"),
     

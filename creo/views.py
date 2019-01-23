@@ -260,3 +260,5 @@ def addlike(request,id):
 
 """def myposts(request):
     posts = PostSubmission.objects.get(publisher=request.user)"""
+def notification(request):
+    return render(request,"index.html")
