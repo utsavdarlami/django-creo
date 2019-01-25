@@ -1,0 +1,24 @@
+ #div1
+      {
+        position: relative;
+        border: 1px solid #121416;
+        background-color:#121416;
+        color:white;
+        text-align: center;
+        font-family: 'ZCOOL KuaiLe', cursive;
+      }
+
+      nav.navbar
+      {
+        top:0;
+        position: sticky; 
+        background-color: rgb(72, 112, 32);
+        color: black;
+        opacity: 5;
+        border: 1px solid #121416;
+        border-radius: 10px;
+      }
+      .first{
+      	padding-left: 100px;
+      	padding-right: 100px;
+      }
