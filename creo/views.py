@@ -29,7 +29,6 @@ def testurl(request,slug = 'mostviewed'):
         latest_submissions = PostSubmission.objects.order_by('-pub_date','-like_count','-view_count')
     else:
         latest_submissions = PostSubmission.objects.order_by('-view_count','-like_count','-pub_date')
-
     # template = loader.get_template('images/index.html')
     context = { 'latest_submissions': latest_submissions }
     return render(request, 'testurl.html', context)
@@ -232,6 +231,34 @@ def addcomment(request,id):
         return(signin(request))
 
 def addlike(request,id):
+    current_submission = get_object_or_404(PostSubmission,pk=id)
+    request.method="POST"
+    if request.user.is_authenticated:
+        if request.method =="POST":
+            if Likes.objects.filter(post = current_submission,publisher=request.user).exists():
+                liked = Likes.objects.get(post = current_submission,publisher=request.user)
+                if liked.like == True:
+                    liked.like = False
+                    liked.save()
+                    current_submission.like_count = F('like_count')-1
+                    current_submission.save()
+                else :
+                    liked.like = True
+                    liked.save()
+                    current_submission.like_count = F('like_count')+1
+                    current_submission.save()
+                    #notify.send(User.objects.get(username=request.user).username, recipient=current_submission.id, verb='Liked Your Post')
+
+            else:
+                like = Likes(post=current_submission,like=True,publisher=request.user)
+                like.save()
+                current_submission.like_count = F('like_count')+1
+                current_submission.save()
+            return HttpResponseRedirect(reverse('detailpost', args=(id,)))
+        else:
+            return(detailpost(request,id))
+    else:
+        return(signin(request))
     current_submission = get_object_or_404(PostSubmission,pk=id)
     if request.user.is_authenticated:
         if request.method =="POST":

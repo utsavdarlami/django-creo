@@ -12,14 +12,28 @@
             {%else%}
             --NO USERS--           
             {%endif%}-->
-            <div style="text-align:center">
-            <div class="media" style="display:inline;">
+            <!-- <div style="float: right;"> -->
+                  <div style="float:right;">
+                  <a href="{%url 'updateprofile' %}" >
+                        <span style="font-size: 2em;color: #76c9c9;">
+                              <i class="fas fa-cogs"></i>
+                        </span>
+                  </a>
+                  </div>
+            <!-- </div> -->
+            <br>
+            <br>
+            <br>
+            <div>
+            <div style="text-align:center;">
+            <div class="media" style="display:inline; ">
                 <img class="mr-3" src="{{alluser.profile_pic.url}}" alt="user profile pic" max-width="250"height="250" style="box-shadow: 1px 1px 10px 4.5px #444951;">
                 <div class="media-body">
-                                   
+                         
+                        <h4>Username: {{u.username}}</h4>
                         <h4 style="padding-top:5px;"><a href={{artistinfo2.portfolio_site}}>Portfolio Site</a></h4>
-                        <h4>E-mail: {{artistinfo.email}}</h4>
-                        <h4>pk : {{alluser.pk}}</h4>
+                        <h4>E-mail: {{u.email}}</h4>
+                        <!-- <h4>pk : {{alluser.pk}}</h4> -->
                 </div>
             </div>
             </div>
@@ -31,62 +45,70 @@
                     </div>
 
                 {%if alluser.resume%}
-                <div style="text-align:center; padding-top:60px;">
+                  <div style="text-align:center; padding-top:60px;">
                         <p style="display: inline;">
-                        <button class="w3-button w3-light-grey w3-padding-large w3-section">
+                              <button class="w3-button w3-light-grey w3-padding-large w3-section">
                                     <i class="fa fa-download"></i> <a href={{alluser.resume.url}}>Download Resume</a>
-                                    </button>
-                                    </p>
-                                    </div>
+                              </button>
+                        </p>
+                  </div>
                 {%endif%}
             
             {% if artistposts %}
             <div style="text-align:center; padding-top:60px;">
-            <h2 style="display: inline;">My Posts:</h2>
+            <h3 style="display: inline;">Uploads:</h3>
             {% for submission in artistposts %}
             <div class="row">  
                   
                   {%if submission.post_type == 1 %}
                   <div class="edit1">
-                  <a href="{% url 'detailpost' submission.id %}">
-                        <video id="video1" controls>
-                                <source src="{{ submission.content.url }}/" type="video/mp4">
-                                <source src="{{ submission.content.url }}/" type="video/ogg">
-                                Your browser does not support the video tag.
-                    </video>
-                    <div class="overlay">{{submission.title}}</div>
-                    </a>  
+                        <a href="{% url 'detailpost' submission.id %}">
+                                    <div class="file-container">
+                                          <video id="video1" controls>
+                                                      <source src="{{ submission.content.url }}/" type="video/mp4">
+                                                      <source src="{{ submission.content.url }}/" type="video/ogg">
+                                                      Your browser does not support the video tag.
+                                          </video>
+                                          <div class="overlay">{{submission.title}}</div>
+                                    </div>
+                              </a>  
                     </div>     
                   {%endif%}
 
                   {%if submission.post_type == 0 %}
                   <div class="edit1">
                         <a href="{% url 'detailpost' submission.id %}">
+                              <div class="file-container" >
                                     <img id="img1" src="{{ submission.content.url }}/">
                                     <div class="overlay">{{submission.title}}</div>
-                              </a></div>
+                              </div>
+                        </a>
                   {%endif%}
 
                   {%if submission.post_type == 2 %}
                   <div class="edit1">
-                        <div class="container" style="text-align: center; border:2px solid black; padding-top:50px;">
-                                    <span style=" display: inline-block;" >
-                                          <i class="fas fa-music fa-10x"></i>
-                                    </span>
-                                    <p></p>
-            <a href="{% url 'detailpost' submission.id %}">
-                        <div style="text-align: center;">
-                                    <div class="container" style=" display: inline-block;padding-top: 20px; padding-bottom: 20px;">
-                                          <audio controls >
-                                                <source src="{{ submission.content.url }}/" type="audio/ogg" style="max-width:100%; height:auto;">
-                                                <source src="{{ submission.content.url }}/" type="audio/mpeg" style="max-width:100%; height:auto;">
-                                                Your browser does not support the audio tag.
-                                          </audio>
+                        <div class="file-container">
+                                    <div class="container" style="text-align: center; border:2px solid black; padding-top:50px;">
+                                                <span style=" display: inline-block;" >
+                                                      <i class="fas fa-music fa-10x"></i>
+                                                </span>
+                                                <p></p>
+                                    <a href="{% url 'detailpost' submission.id %}">
+                                    <div style="text-align: center;">
+                                          <div class="audio-container" style=" display: inline-block;padding-top: 20px; padding-bottom: 20px;">
+                                                <div class="audio-box-container">
+                                                      <audio controls  >
+                                                            <source src="{{ submission.content.url }}/" type="audio/ogg" style="max-width:100%; height:auto;">
+                                                            <source src="{{ submission.content.url }}/" type="audio/mpeg" style="max-width:100%; height:auto;">
+                                                            Your browser does not support the audio tag.
+                                                      </audio>
+                                                </div>
+                                          </div>
                                     </div>
-                        </div>
-                        </a>
-                        </div>
-                        <div class="overlay">{{submission.title}}</div> 
+                                    </a>
+                                    </div>
+                                    <div class="overlay">{{submission.title}}</div> 
+                              </div> 
             {%endif%}
                   {% endfor %}
       
@@ -97,10 +119,5 @@
             </div>
             </div>
         
-            <div class="btn-group" role="group" aria-label="Basic example">
-            <form action="/creo/editprofile">
-                <input type="submit" class="btn btn-info" value="Update">
-            </form>
-            </div>
-            </div>
+      </div>
 {% endblock %}

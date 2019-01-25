@@ -3,7 +3,7 @@
 {% block contents %}
 <div class="jumbotron" style="background-color:#dbd9d9 !important;">
       <div class="dropdown" style="float:right;">
-            <button class="btn btn-primary dropdown-toggle" type="button" data-toggle="dropdown" style="background-color:indianred;">Filter
+            <button class="btn btn-primary dropdown-toggle" type="button" data-toggle="dropdown" style="background-color:#444951;">Filter
             <span class="caret"></span></button>
             <ul class="dropdown-menu">
                         <li><a href="{%url 'allaudio' slug='mostview' %}">Most Viewd</a></li>
@@ -18,30 +18,35 @@
 <div class="row">
       {%if submission.post_type == 2 %}
       <div class="edit1">
+            <div class="file-container">
                   <div class="container" style="text-align: center; border:2px solid black; padding-top:50px;">
                               <span style=" display: inline-block;" >
                                     <i class="fas fa-music fa-10x"></i>
                               </span>
                               <p></p>
-      <a href="{% url 'detailpost' submission.id %}">
+                  <a href="{% url 'detailpost' submission.id %}">
                   <div style="text-align: center;">
-                              <div class="container" style=" display: inline-block;padding-top: 20px; padding-bottom: 20px;">
-                                    <audio controls >
+                        <div class="audio-container" style=" display: inline-block;padding-top: 20px; padding-bottom: 20px;">
+                             <div class="audio-box-container">
+                                    <audio controls  >
                                           <source src="{{ submission.content.url }}/" type="audio/ogg" style="max-width:100%; height:auto;">
                                           <source src="{{ submission.content.url }}/" type="audio/mpeg" style="max-width:100%; height:auto;">
                                           Your browser does not support the audio tag.
                                     </audio>
                               </div>
+                        </div>
                   </div>
                   </a>
                   </div>
                   <div class="overlay">{{submission.title}}</div> 
+            </div>
+      
       {%endif%}
 </div>
 {% endfor %}
 
 {% else %}
 <p>No submissions are available.</p>
-</div>
+</div></div>
 {% endif %}
 {% endblock %}
