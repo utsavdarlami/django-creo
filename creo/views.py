@@ -195,19 +195,22 @@ def detailpost(request,id):
     submission.save()
     comments  = CommentPost.objects.filter(title_id  = submission.id)
     if request.user.is_authenticated:
+        if SavedPost.objects.filter(post = submission,savedby=request.user).exists():
+            saved = SavedPost.objects.get(post = submission,savedby=request.user)
+        else:
+            saved = None
         if Likes.objects.filter(post = submission,publisher=request.user).exists():
             liked = Likes.objects.get(post = submission,publisher=request.user)
             form = CommentPostForm()
-            return render(request, 'detail.html', {'submission': submission,'comments':comments, 'form': form,'liked':liked})
+            return render(request, 'detail.html', {'submission': submission,'comments':comments, 'form': form,'liked':liked,'saved':saved})
         else:
             form = CommentPostForm()
-            return render(request, 'detail.html', {'submission': submission,'comments':comments, 'form': form})
+            return render(request, 'detail.html', {'submission': submission,'comments':comments, 'form': form,'saved':saved})
     #return render(request, 'detail.html', {'submission': submission,})#, 'form': form})
     else:
         form = CommentPostForm()
         return render(request, 'detail.html', {'submission': submission,'comments':comments, 'form': form})
     #return render(request, 'detail.html', {'submission': submission,})#, 'form': form})
-
 def artistdetail(request,publisher):
     artistinfo = get_object_or_404(User,username=publisher)
     artistinfo2 = get_object_or_404(UserProfileInfo,user_id=artistinfo.id)
