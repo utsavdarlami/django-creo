@@ -81,7 +81,34 @@
     
             </a>
         {%endif%}
+        <!--saving button-->
+        {%if saved%}
+            {%if saved.save_post == True%}
+                <a href="{%url 'saved' submission.id%}">
+                    <span style="font-size: 2em;color: #4e4c4c;">
+                        <i class="fas fa-bookmark"></i>
+                    </span>
+                </a>
+            {%endif%}
+            {%if saved.save_post == False%}
+                <a href="{%url 'saved' submission.id%}">
+                    <span style="font-size: 2em;color: #4e4c4c;">
+                        <i class="far fa-bookmark"></i>
+                </span>
+    
+                </a>
+            {%endif%}
+        {%endif%}
+    
+        {%if not saved%}
+            <a href="{%url 'saved' submission.id%}">
+                <span style="font-size: 2em;color: #4e4c4c;">
+                    <i class="far fa-bookmark"></i>
+                </span>    
+            </a>
+        {%endif%}
         </div>
+
 
 
     <h5 style="display:inline;">Likes: {{submission.like_count}}</h5>     
