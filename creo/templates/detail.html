@@ -2,7 +2,7 @@
 
 {% block contents %}
 
-<div class="jumbotron">
+<div class="jumbotron" style="background-color:#dbd9d9 !important;">
     {%if request.user == submission.publisher%}
         <div class="btn-group" role="group" aria-label="Basic example">
                     <form action="update/">
@@ -53,11 +53,35 @@
     </div>
     
     <div style="margin-bottom:10px; margin-top: 10px;">
-    <form action="{%url 'addlike' submission.id %}" method="POST">
-        <input type="submit" class="btn btn-success" value="Like">
-        {%csrf_token%}
-    </form>
-    </div>
+        {%if liked%}
+            {%if liked.like == True%}
+                <a href="{%url 'addlike' submission.id%}">
+                    <span style="font-size: 2em;color: #d82b2b;">
+                        <i class="fas fa-heart"></i>
+                    </span>
+                </a>
+            {%endif%}
+            {%if liked.like == False%}
+                <a href="{%url 'addlike' submission.id%}">
+                    <span style="font-size: 2em;color: #d82b2b;">
+    
+                    <i class="far fa-heart"></i>
+                </span>
+    
+                </a>
+            {%endif%}
+        {%endif%}
+    
+        {%if not liked%}
+        <a href="{%url 'addlike' submission.id%}">
+                <span style="font-size: 2em;color: #d82b2b;">
+    
+                <i class="far fa-heart"></i>
+            </span>
+    
+            </a>
+        {%endif%}
+        </div>
 
 
     <h5 style="display:inline;">Likes: {{submission.like_count}}</h5>     
@@ -74,15 +98,19 @@
     </p>
 
 
-    <p>
-        <h4 style="font-family:'Noto Serif', serif; font-weight:bold; font-size:18px;">Comments:</h4>
-        <div class="edit4">
-        <ul>
-        {%for comment in comments%}
-            <li><p style="font-family:'Noto Serif', serif; font-size:15px;"><a href="{%url 'artistdetail' comment.publisher %}">{{comment.publisher}} </a>: {{comment.comment}}</p></li>
-        {%endfor%}
-        </ul>
-    </p>
+    {%if liked%}
+        {%if liked.like == True%}
+        <p>
+            <h4 style="font-family:'Noto Serif', serif; font-weight:bold; font-size:18px;">Comments:</h4>
+            <div class="edit4">
+            <ul>
+                {%for comment in comments%}
+                    <li><p style="font-family:'Noto Serif', serif; font-size:15px;"><a href="{%url 'artistdetail' comment.publisher %}">{{comment.publisher}} </a>: {{comment.comment}}</p></li>
+                {%endfor%}   
+            </ul>
+        </p>
+        {%endif%}
+    {%endif%}
     </div>
 </div>
 </div>
