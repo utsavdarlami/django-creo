@@ -8,7 +8,7 @@ from django.http import HttpResponse,HttpResponseRedirect
 from creo.models import UserProfileInfo,PostSubmission,CommentPost,Likes
 from django.contrib import messages
 #importing from  forms.py
-from creo.forms import UserForm,UserProfileInfoForm,CommentPostForm,LikePostButton,PostSubmissionForm,UserProfileInfoUpdateForm
+from creo.forms import UserForm,UserProfileInfoForm,CommentPostForm,PostSubmissionForm,UserProfileInfoUpdateForm
 #importing class views
 from django.views.generic import DeleteView,CreateView,UpdateView
 from django.contrib.auth.models import User
@@ -260,3 +260,35 @@ def addlike(request,id):
 
 """def myposts(request):
     posts = PostSubmission.objects.get(publisher=request.user)"""
+def savethispost(request,id):
+    current_submission = get_object_or_404(PostSubmission,pk=id)
+    request.method="POST"
+    if request.user.is_authenticated:
+        if request.method =="POST":
+            if SavedPost.objects.filter(post = current_submission,savedby=request.user).exists():
+                saved = SavedPost.objects.get(post = current_submission,savedby=request.user)
+                if saved.save_post == True:
+                    saved.save_post = False
+                    saved.save()
+                else :
+                    saved.save_post = True
+                    saved.save()
+            else:
+                initial_save = SavedPost(post=current_submission,save_post=True,savedby=request.user)
+                initial_save.save()
+            return HttpResponseRedirect(reverse('detailpost', args=(id,)))
+        else:
+            return(detailpost(request,id))
+    else:
+        return(signin(request))
+
+def mysavedpost(request):
+    all_save_posts=[]
+    saved_posts_list  = SavedPost.objects.filter(savedby  = request.user,save_post=True)
+    if saved_posts_list:
+        for posts in saved_posts_list:
+            saved_posts = PostSubmission.objects.filter(pk=posts.post_id)
+            all_save_posts.append(saved_posts)
+        return render(request, 'savedpost.html', {'saved_posts': all_save_posts,})
+    else :
+        return render(request, 'savedpost.html',)

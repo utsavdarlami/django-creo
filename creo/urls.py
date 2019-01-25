@@ -26,6 +26,9 @@ urlpatterns = [
     path('<int:id>/comment/',views.addcomment,name="addcomment"),#calls addcomment function of views.py
     path('<int:id>/likes/',views.addlike,name="addlike"),#calls addlike function of views.py
     path('portfolio/<str:publisher>/',views.artistdetail,name="artistdetail"),#calls artistdetail function of views.py
+    #saving post
+    path('<int:id>/saved/',views.savethispost,name="saved"),
+    path('mysaves/',views.mysavedpost,name="mysaves"),
 
 
 
