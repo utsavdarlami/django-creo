@@ -33,6 +33,9 @@ urlpatterns = [
     path('<int:id>/likes/',views.addlike,name="addlike"),#calls addlike function of views.py
     path('portfolio/<str:publisher>/',views.artistdetail,name="artistdetail"),#calls artistdetail function of views.py
 
+    #path('mysaves/',views.mysaves,name="mysaves"),
+    path('<int:id>/saved/',views.savethispost,name="saved"),
+    path('mysaves/',views.mysavedpost,name="mysaves"),
 
 
 ]

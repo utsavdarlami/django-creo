@@ -1,0 +1,62 @@
+{% extends "base.html" %}
+
+{% block contents %}
+<div class="jumbotron" style="background-color:#dbd9d9 !important;">
+    
+{% if saved_posts %}
+{%for query_post in saved_posts%}
+      {% for submission in query_post %}
+            <div class="row">
+                  {%if submission.post_type == 1 %}
+                        <div class="edit1">
+                              <a href="{% url 'detailpost' submission.id %}">
+                              <video id="video1" controls>
+                                    <source src="{{ submission.content.url }}/" type="video/mp4">
+                                    <source src="{{ submission.content.url }}/" type="video/ogg">
+                                    Your browser does not support the video tag.
+                              </video>
+                              <div class="overlay">{{submission.title}}</div>
+                              </a>  
+                        </div>              
+                  {%endif%}
+
+                  {%if submission.post_type == 0 %}
+                        <div class="edit1">
+                              <a href="{% url 'detailpost' submission.id %}">
+                                    <img id="img1" src="{{ submission.content.url }}/">
+                                    <div class="overlay">{{submission.title}}</div>
+                              </a>
+                        </div>  
+                  {%endif%}
+
+                  {%if submission.post_type == 2 %}
+                        <div class="edit1">
+                              <div class="container" style="text-align: center; border:2px solid black; padding-top:50px;">
+                                    <span style=" display: inline-block;" >
+                                          <i class="fas fa-music fa-10x"></i>
+                                    </span>
+                                    <p></p>
+                              <a href="{% url 'detailpost' submission.id %}">
+                                    <div style="text-align: center;">
+                                          <div class="container" style=" display: inline-block;padding-top: 20px;">
+                                                <audio controls >
+                                                      <source src="{{ submission.content.url }}/" type="audio/ogg" style="max-width:100%; height:auto;">
+                                                      <source src="{{ submission.content.url }}/" type="audio/mpeg" style="max-width:100%; height:auto;">
+                                                      Your browser does not support the audio tag.
+                                                </audio>
+                                          </div>
+                                    </div>
+                                    <div class="overlay">{{submission.title}}</div> 
+                              </a>
+                        </div>
+                  {%endif%}
+            </div>
+      {% endfor %}
+{% endfor %}
+
+
+{% else %}
+<p>No Saved Posts are available.</p>
+</div>
+{% endif %}
+{% endblock %}
