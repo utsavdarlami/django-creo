@@ -55,12 +55,6 @@ class CommentPostForm(forms.ModelForm):
         fields = ('comment',)
         exclude = ('title','publisher','pub_date',)
 
-class LikePostButton(forms.ModelForm):
-    class Meta():
-        model = Likes
-        fields = ('like',)
-        exclude = ('post','publisher','pub_date',)
-
 class PostSubmissionForm(forms.ModelForm):
     POST_CHOICES = ((0, 'Image'),(1, 'Video'),(2,'Audio'))   
     title = forms.CharField(widget = forms.TextInput(attrs = {"class":"form-control is-valid", "id":"exampleInputUserName1","placeholder":"Enter Title"}))
