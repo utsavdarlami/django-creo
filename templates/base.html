@@ -18,18 +18,21 @@
   <link href="https://fonts.googleapis.com/css?family=ZCOOL+KuaiLe" rel="stylesheet">
   <link rel="icon"  href="{% static 'image/icon/title.png' %}">
   <link href="https://fonts.googleapis.com/css?family=Noto+Serif" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css?family=Didact+Gothic" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css?family=Staatliches" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css?family=Open+Sans" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css?family=Roboto" rel="stylesheet">
+  <link href='http://fonts.googleapis.com/css?family=Arizonia' rel='stylesheet' type='text/css'>
+  
+
+
+
   <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.5.0/css/all.css" integrity="sha384-B4dIYHKNBt8Bc12p+WXckhzcICo0wtJAoU8YZTY5qE0Id1GSseTk6S+L3BlXeVIU" crossorigin="anonymous">
 </head>
 
 
-<body style="background-color:black;">
-<div id="div1">
-  <h1 style="font-size: 100px;">CREO</h1>
-  <p style="font-size: 30px;">Welcome To Creativity!</p>
-</div>
-
-
-    <nav class="navbar navbar-default narvbar-brand navbar-fixed-top" style="-webkit-border-radius: 0; -moz-border-radius: 0; border-radius: 0;">    
+<body style="background-color:#444951;">
+    <nav class="navbar navbar-default narvbar-brand navbar-fixed-top" style="-webkit-border-radius: 0; -moz-border-radius: 0; border-radius: 0; background-color: #2f3238; min-height:55px;">    
         <div class="container-fluid abc">
                 <div class="navbar-header">
                         <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#myNavbar">
@@ -42,28 +45,28 @@
             <div class="collapse navbar-collapse" id="myNavbar">
             <ul class="nav navbar-nav">
                     <li><a href="{%url 'index'%}">
-                            <span style="font-size: 1em; color: whitesmoke;">
-                                <i class="fas fa-home"> Home</i>
+                            <span style="color: whitesmoke;">
+                                <h1 style="font-family:'Arizonia', Helvetica, sans-serif; font-size: 3.5em;display: inline; border-right: 2px solid whitesmoke; padding-right: 20px;">CREO</h1></i>
                             </span>
                           </a></li>
                           <li><a href=" {% url 'allimage' %} ">
-                            <span style="font-size: 1em; color: whitesmoke;;">
-                                <i class="fas fa-images"> Photos</i>
+                            <span style="font-size: 1.2em; color: whitesmoke;">
+                                <i class="fas fa-images" style="padding-top:30px;" ><p style="font-family: 'Open Sans', sans-serif; display: inline; padding-left: 5px;">Photos</p></i>
                             </span>
                           </a></li>
                           <li><a href=" {% url 'allvideo' %} ">
-                            <span style="font-size: 1em; color: whitesmoke;;">
-                                <i class="fas fa-sign-video"> Videos</i>
+                            <span style=" font-size: 1.2em;color: whitesmoke;;">
+                                <i class="fas fa-video" style="padding-top:30px;" ><p style="font-family: 'Open Sans', sans-serif;display: inline;padding-left: 5px;">Videos</p></i>
                             </span>
                           </a></li>
                           <li><a href="{%  url 'allaudio' %}">
-                            <span style="font-size: 1em; color: whitesmoke;;">
-                                <i class="fas fa-headphones"> Audios</i>
+                            <span style=" font-size: 1.2em;color: whitesmoke;;">
+                                <i class="fas fa-headphones" style="padding-top:30px;"> <p style="font-family: 'Open Sans', sans-serif;display: inline;padding-left: 5px;">Audio</p></i>
                             </span>
                           </a></li>
                           <li><a href="{%  url 'post' %} ">
-                            <span style="font-size: 1em; color: whitesmoke;;">
-                                <i class="fas fa-upload"> Posts</i>
+                            <span style="font-size: 1.2em;color: whitesmoke;;">
+                                <i class="fas fa-upload" style="padding-top:30px;"><p style="font-family: 'Open Sans', sans-serif;display: inline;padding-left: 5px;">Posts</p></i>
                             </span>
                           </a></li>
             </ul>
@@ -71,15 +74,15 @@
                     {%if user.is_authenticated%}
                         <li class="nav-item">
                             <a class="nav-link" href="{% url 'profile' %}">
-                                <span style="font-size: 1em; color: whitesmoke;;">
-                                    <i class="fas fa-sign-in-alt"> Profile</i>
+                                <span style="font-size: 1.2em;color: whitesmoke;;">
+                                    <i class="fas fa-sign-in-alt" style="padding-top:30px;"><p style="font-family: 'Open Sans', sans-serif;display: inline;padding-left: 5px;">Profile</p></i>
                                 </span>
                             </a>
                         </li>
                         <li class="nav-item">
                             <a class="nav-link" href="{% url 'user_logout' %}">
-                                <span style="font-size: 1em; color: whitesmoke;;">
-                                    <i class="fas fa-user"> Log Out</i>
+                                <span style="font-size: 1.2em;color: whitesmoke;;">
+                                    <i class="fas fa-user" style="padding-top:30px;"> <p style="font-family: 'Open Sans', sans-serif;display: inline;padding-left: 5px;">Log Out</p></i>
                                 </span>
                             </a>
                         </li>
@@ -88,15 +91,15 @@
                 {%else%}
                 <li class="nav-item">
                         <a class="nav-link" href="{% url 'signin' %}">
-                            <span style="font-size: 1em; color: whitesmoke;;">
-                                <i class="fas fa-sign-in-alt"> Log In</i>
+                            <span style="font-size: 1.2em; color: whitesmoke;;">
+                                <i class="fas fa-sign-in-alt" style="padding-top:30px;"><p style="font-family: 'Open Sans', sans-serif;display: inline;padding-left: 5px;">Log In</p></i>
                             </span>
                         </a>
                     </li>
                     <li class="nav-item">
                         <a class="nav-link" href="{% url 'createaccount' %}">
-                            <span style="font-size: 1em; color: whitesmoke;;">
-                                <i class="fas fa-user"> Sign Up</i>
+                            <span style="font-size: 1.2em; color: whitesmoke;;">
+                                <i class="fas fa-user" style="padding-top:30px;"><p style="font-family: 'Open Sans', sans-serif;display: inline;padding-left: 5px;">Sign Up</p></i>
                             </span>
                         </a>
                     </li>
@@ -112,7 +115,7 @@
         
         {%endblock%}
         </div>
-</div>
+
 </body>
 </html>
 

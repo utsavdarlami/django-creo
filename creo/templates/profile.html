@@ -1,77 +1,93 @@
 {%extends "base.html"%}
 {%block contents%}
 
-        <div class="jumbotron">
-           <!-- {%if alluser%}
-                <h6>{{alluser.user}}</h6>
-                <img src="{{alluser.profile_pic.url}}" class="img-thumbnail" alt="user profile pic" width="200">
-                
-            
-                     {{user.first_name}} {{user.last_name}}
-                
-            {%else%}
-            --NO USERS--           
-            {%endif%}-->
-            <div class="media">
-                <img class="mr-3" src="{{alluser.profile_pic.url}}" alt="user profile pic" width="150">
-                <div class="media-body">
-                    <ul>                
-                        <li><h5><a href={{alluser.portfolio_site}}>Instagram</a></h5></li>
-                        <li><h5>Mail id : {{u.email}}</h5></li>
-                        <li><h5>pk : {{alluser.pk}}</h5></li>
-                    </ul>
-
+      <div class="jumbotron" style="background-color:#dbd9d9 !important;">
+            <a href="{%url 'updateprofile' %}">
+                  <span style="font-size: 2em;color: #76c9c9;">
+                        <i class="fas fa-cogs"></i>
+                  </span>
+            </a>
+            <div style="text-align:center">
+                  <div class="media" style="display:inline;">
+                        <img class="mr-3" src="{{alluser.profile_pic.url}}" alt="user profile pic" max-width="250"height="250" style="box-shadow: 1px 1px 10px 4.5px #444951;">
+                        <div class="media-body">               
+                        <h4 style="padding-top:5px;"><a href={{artistinfo2.portfolio_site}}>Portfolio Site</a></h4>
+                        <h4>E-mail: {{alluser.email}}</h4>
+                        <h4>pk : {{alluser.pk}}</h4>
+                        </div>
+                  </div>
+            </div>
                 {%if alluser.bio%}
-                    <h5>Bio :</h5><p>{{alluser.bio}}</p>
+                <div style="text-align:center; padding-top:60px;">
+                    <h2 style="display: inline;">About Me:</h2><p style="font-size:15px;">{{alluser.bio}}</p>
                 {%endif%}
+                    </div>
 
                 {%if alluser.resume%}
-                    <a href={{alluser.resume.url}}><h3>Resume</h3></a>
+                <div style="text-align:center; padding-top:60px;">
+                        <p style="display: inline;">
+                        <button class="w3-button w3-light-grey w3-padding-large w3-section">
+                                    <i class="fa fa-download"></i> <a href={{alluser.resume.url}}>Download Resume</a>
+                                    </button>
+                                    </p>
+                                    </div>
                 {%endif%}
-                </div>
-            </div>
+            
             {% if artistposts %}
-            <h3>My Posts</h3>
+            <div style="text-align:center; padding-top:60px;">
+            <h2 style="display: inline;">My Posts:</h2>
             {% for submission in artistposts %}
             <div class="row">  
-                  <div class="container"> 
+                  
                   {%if submission.post_type == 1 %}
+                  <div class="edit1">
                   <a href="{% url 'detailpost' submission.id %}">
-                  <video width="320" height="240" controls>
-                              <source src="{{ submission.content.url }}/" type="video/mp4">
-                              <source src="{{ submission.content.url }}/" type="video/ogg">
-                              Your browser does not support the video tag.
-                  </video>
-                  </a>          
+                        <video id="video1" controls>
+                                <source src="{{ submission.content.url }}/" type="video/mp4">
+                                <source src="{{ submission.content.url }}/" type="video/ogg">
+                                Your browser does not support the video tag.
+                    </video>
+                    <div class="overlay">{{submission.title}}</div>
+                    </a>  
+                    </div>     
                   {%endif%}
 
                   {%if submission.post_type == 0 %}
-                  <a href="{% url 'detailpost' submission.id %}"><img src="{{ submission.content.url }}/" width="400" padding="5"></a>
+                  <div class="edit1">
+                        <a href="{% url 'detailpost' submission.id %}">
+                                    <img id="img1" src="{{ submission.content.url }}/">
+                                    <div class="overlay">{{submission.title}}</div>
+                              </a></div>
                   {%endif%}
 
                   {%if submission.post_type == 2 %}
-                  <a href="{% url 'detailpost' submission.id %}">
-                        <div class="container">
-                        <audio controls>
-                              <source src="{{ submission.content.url }}/" type="audio/ogg">
-                              <source src="{{ submission.content.url }}/" type="audio/mpeg">
-                              Your browser does not support the audio tag.
-                        </audio>
+                  <div class="edit1">
+                        <div class="container" style="text-align: center; border:2px solid black; padding-top:50px;">
+                                    <span style=" display: inline-block;" >
+                                          <i class="fas fa-music fa-10x"></i>
+                                    </span>
+                                    <p></p>
+            <a href="{% url 'detailpost' submission.id %}">
+                        <div style="text-align: center;">
+                                    <div class="container" style=" display: inline-block;padding-top: 20px; padding-bottom: 20px;">
+                                          <audio controls >
+                                                <source src="{{ submission.content.url }}/" type="audio/ogg" style="max-width:100%; height:auto;">
+                                                <source src="{{ submission.content.url }}/" type="audio/mpeg" style="max-width:100%; height:auto;">
+                                                Your browser does not support the audio tag.
+                                          </audio>
+                                    </div>
                         </div>
-                  </a>
-                  {%endif%}
-                  </div> 
-                  <br>
+                        </a>
+                        </div>
+                        <div class="overlay">{{submission.title}}</div> 
+            {%endif%}
+                  {% endfor %}
+      
+                  {% else %}
+                  <p>No submissions are available.</p>
+                  {% endif %}
             </div>
-            {% endfor %}
-
-            {% else %}
-            <p>No submissions are available.</p>
-            {% endif %}
             </div>
-            <div class="btn-group" role="group" aria-label="Basic example">
-            <form action="/creo/editprofile">
-                <input type="submit" class="btn btn-info" value="Update">
-            </form>
             </div>
+      </div>
 {% endblock %}
