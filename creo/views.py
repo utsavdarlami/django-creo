@@ -236,6 +236,7 @@ def addcomment(request,id):
 
 def addlike(request,id):
     current_submission = get_object_or_404(PostSubmission,pk=id)
+    request.method="POST"
     if request.user.is_authenticated:
         if request.method =="POST":
             if Likes.objects.filter(post = current_submission,publisher=request.user).exists():
@@ -250,6 +251,7 @@ def addlike(request,id):
                     liked.save()
                     current_submission.like_count = F('like_count')+1
                     current_submission.save()
+                    #notify.send(User.objects.get(username=request.user).username, recipient=current_submission.id, verb='Liked Your Post')
             else:
                 like = Likes(post=current_submission,like=True,publisher=request.user)
                 like.save()
