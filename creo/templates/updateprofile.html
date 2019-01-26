@@ -1,0 +1,33 @@
+{%extends "base.html"%}
+{%block contents%}
+
+        <div class="jumbotron" style="background-color:#dbd9d9 !important;">
+           <!-- {%if alluser%}
+                <h6>{{alluser.user}}</h6>
+                <img src="{{alluser.profile_pic.url}}" class="img-thumbnail" alt="user profile pic" width="200">
+                
+            
+                     {{user.first_name}} {{user.last_name}}
+                
+            {%else%}
+            --NO USERS--           
+            {%endif%}-->
+            <div class="media">
+                <h3>{{alluser}}</h3>
+                <div class="media-body">
+                </div>
+              </div>
+            </div>
+
+            <div class="btn-group" role="group" aria-label="Basic example">
+            <form action="/creo/delete/{{u.pk}}" style="margin-bottom: 10px;">
+                    <input type="submit" class="btn btn-danger" value="Delete" style="background-color:#444951; border-color: #dbd9d9">
+            </form>
+            <form action="/creo/userupdate/{{u.pk}}" style="margin-bottom: 10px;">
+                <input type="submit" class="btn btn-info" value="Update Email" style="background-color:#444951; border-color: #dbd9d9 ">
+            </form>
+            <form action="/creo/portfolioupdate/{{alluser.pk}}" style="margin-bottom: 10px;">
+                <input type="submit" class="btn btn-info" value="Update Portfolio" style="background-color:#444951 ;border-color: #dbd9d9;">
+            </form>
+            </div>
+{% endblock %}

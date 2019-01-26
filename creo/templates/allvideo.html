@@ -1,0 +1,40 @@
+{% extends "base.html" %}
+
+{% block contents %}
+<div class="jumbotron" style="background-color:#dbd9d9 !important;">
+      <div class="dropdown" style="float:right;">
+            <button class="btn btn-primary dropdown-toggle" type="button" data-toggle="dropdown" style="background-color:#444951;">Filter
+            <span class="caret"></span></button>
+            <ul class="dropdown-menu">
+                                    <li><a href="{%url 'allvideo' slug='mostview' %}">Most Viewd</a></li>
+                                    <li><a href="{%url 'allvideo' slug='newest'%}">New</a></li>
+                                    <li><a href="{%url 'allvideo' slug='mostliked'%}">Most Liked</a></li>
+                    </ul>
+                    </div>
+{% if latest_submissions %}
+{% for submission in latest_submissions %}
+<div class="row">
+      {%if submission.post_type == 1 %}
+      <div class="edit1">
+                  <a href="{% url 'detailpost' submission.id %}">
+                        <div class="file-container">
+                              <video id="video1" controls>
+                                          <source src="{{ submission.content.url }}/" type="video/mp4">
+                                          <source src="{{ submission.content.url }}/" type="video/ogg">
+                                          Your browser does not support the video tag.
+                              </video>
+                              <div class="overlay">{{submission.title}}</div>
+                        </div>      
+                  </a>  
+            </div>                   
+            {%endif%}
+      
+</div>
+{% endfor %}
+
+{% else %}
+<p>No submissions are available.</p>
+</div>
+</div>
+{% endif %}
+{% endblock %}

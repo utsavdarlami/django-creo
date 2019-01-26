@@ -1,0 +1,15 @@
+{%extends "base.html"%}
+{%load bootstrap3%}
+{%block contents%}
+        <div class="jumbotron" style="background-color:#dbd9d9 !important;">
+            {%if user.is_authenticated%}        
+                <form enctype="multipart/form-data" method="POST">
+                    {%csrf_token%}
+                    {{form.non_field_errors }}
+                    {%bootstrap_form form%}
+                    <input type="submit" class="btn btn-primary" value = "Post">
+                </form>
+            {%else%}
+            {%endif%}
+        </div>
+{% endblock %}

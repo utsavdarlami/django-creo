@@ -1,0 +1,12 @@
+{%extends "base.html"%}
+{%block contents%}
+
+        <div class="jumbotron" style="background-color:#dbd9d9 !important;">
+               Are You Sure You Want To Delete {{user.username}}
+               <form method="POST">
+                   <input type="submit" class="btn btn-danger" value="Confirm">
+                   {%csrf_token%}
+                   <a href="/creo/profile/">Cancel</a>
+               </form>
+        </div>
+{% endblock %}

@@ -1,0 +1,29 @@
+{%extends "base.html"%}
+{%load bootstrap3%}
+{%block contents%}
+        <div class="jumbotron" style="background-color:#dbd9d9 !important;">
+                
+            {%if user.is_authenticated%}        
+                <form enctype="multipart/form-data" method="POST">
+                    <h4>POST YOUR CONTENT</h4>
+                    {%csrf_token%}
+                    {{form.non_field_errors }}
+                    {%bootstrap_form form%}
+                    <input type="submit" class="btn btn-primary" value = "Post">
+                </form>
+            {%else%}
+            <div class="btn-group">
+                <form action="/creo/createaccount">
+                <input type="submit" class="btn btn-info btn-default" value="Create Account First">
+            </form>
+            </div>
+            <div class="btn-group">
+            <form action="/signin">
+                <input type="submit" class="btn btn-info btn-default" value="Login First">
+            
+            </form>
+            </div>
+            {%endif%}
+        </div>
+        
+{% endblock %}
