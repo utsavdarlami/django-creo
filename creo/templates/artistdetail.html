@@ -24,7 +24,7 @@
             </div>
                   {%if artistinfo2.bio%}
                   <div style="text-align:center; padding-top:60px;">
-                        <h2 style="display: inline;">About Me:</h2><p style="font-size:15px;">{{artistinfo2.bio}}</p>
+                        <h2 style="display: inline;font-family: 'Roboto', sans-serif;">About Me:</h2><p style="font-size:15px;">{{artistinfo2.bio}}</p>
                   </div>
                   {%endif%}
                   {%if artistinfo2.resume%}
@@ -40,7 +40,7 @@
             
             {% if artistposts %}
             <div style="text-align:center; padding-top:60px;">
-            <h2 style="display: inline;">Posts:</h2>
+            <h2 style="display: inline;font-family: 'Roboto', sans-serif;">Posts:</h2>
             {% for submission in artistposts %}
             <div class="row">
          {%if submission.post_type == 1 %}
