@@ -1,8 +1,9 @@
-# django-creo
+# Creo Verse
+
 creo  https://creoverse.herokuapp.com/
     
     image,video and art sharing platform
-    * *Like The Posts to Know about the Artist*
+    ** Like The Posts to Know about the Artist *
 
 
 not completed 
@@ -29,10 +30,13 @@ not completed
 │   │   │   └── user_form.html
 │   │   ├── createaccount.html
 │   │   ├── creo
+│   │   │   ├── postsubmission_confirm_delete.html
 │   │   │   ├── postsubmission_form.html
 │   │   │   └── userprofileinfo_form.html
 │   │   ├── detail.html
 │   │   ├── profile.html
+│   │   ├── savedpost.html
+│   │   ├── testurl.html
 │   │   ├── updateprofile.html
 │   │   └── user.html
 │   ├── tests.py
@@ -42,6 +46,15 @@ not completed
 ├── db.sqlite3
 ├── manage.py
 ├── media
+│   ├── image
+│   │   └── icon
+│   │       ├── creohome.jpg
+│   │       ├── Ctitle.png
+│   │       ├── github_logo2.png
+│   │       ├── github_logo3.png
+│   │       ├── github_logo.png
+│   │       ├── like.png
+│   │       └── title.png
 │   ├── postedpics
 │   │   ├── gcwqq1of8vm01.jpg
 │   │   ├── grub_0.jpg
@@ -54,6 +67,7 @@ not completed
 │   │   └── thanos-funny-artwork-xd-1024x768.jpg
 │   ├── posts
 │   │   ├── Pink_Floyd_-_Wish_You_Were_Here.mp3
+│   │   ├── stormtroopertype-tshirt-design-1.png
 │   │   └── test1.mp4
 │   ├── profilepics
 │   │   ├── batmanlogo.jpg
@@ -71,26 +85,27 @@ not completed
 │   │   └── venom-2018-movie-poster-f9-1024x768.jpg
 │   └── resumes
 │       └── creo.pdf
+├── Procfile
 ├── README.md
 ├── requirements.txt
 ├── secondproject
+│   ├── __init__.py
 │   ├── settings.py
 │   ├── urls.py
 │   └── wsgi.py
 ├── static
-│   ├── css
-│   │   ├── intro.css
-│   │   ├── logsign.css
-│   │   └── main.css
-│   └── image
-│       └── icon
-│           ├── like.png
-│           └── title.png
+│   └── css
+│       ├── intro.css
+│       ├── logsign.css
+│       ├── main.css
+│       └── sample1.css
 └── templates
     ├── base.html
+    ├── footer.html
     ├── home.html
     ├── index.html
     └── signin.html
+
 ```
 # How To Run
 ```bash
