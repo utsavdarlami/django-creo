@@ -1,6 +1,6 @@
 from django import forms
 from django.contrib.auth.models import User
-from creo.models import UserProfileInfo,CommentPost,Likes,PostSubmission
+from creo.models import UserProfileInfo,CommentPost,PostSubmission
 class UserForm(forms.ModelForm):
     password = forms.CharField(widget =forms.PasswordInput(attrs = {"class":"form-control is-valid", "placeholder":"Password","label for":"exampleInputPassword1","size":"25"}))
     password1 = forms.CharField(widget =forms.PasswordInput(attrs = {"class":"form-control is-valid", "placeholder":"Password","label for":"exampleInputPassword1","size":"25"}),label="Password Confirmation")
@@ -8,7 +8,7 @@ class UserForm(forms.ModelForm):
     email    = forms.EmailField(widget = forms.EmailInput(attrs = {"class":"form-control is-valid" ,"id":"exampleInputEmail1","placeholder":"Enter email"}))
     class Meta():
         model  = User
-        fields = ('username','email','password')
+        fields = ('first_name','last_name','username','email','password')
     def clean_username(self, *args ,**kwargs):
         username = self.cleaned_data.get('username')
         username_qs = User.objects.filter(username=username)
@@ -31,7 +31,7 @@ class UserProfileInfoForm(forms.ModelForm):
     gender = forms.ChoiceField(choices=GENDER_CHOICES, widget=forms.RadioSelect())
     class Meta():
         model  = UserProfileInfo
-        fields = ('portfolio_site','profile_pic','gender')
+        fields = ('gender',)
     
 class UserProfileInfoUpdateForm(forms.ModelForm):
     GENDER_CHOICES = (
@@ -40,8 +40,8 @@ class UserProfileInfoUpdateForm(forms.ModelForm):
    ('O','Other')
    )
    # profile_pic= forms.ImageField(widget=PictureWidget)
-    portfolio_site = forms.URLField(widget = forms.URLInput(attrs = {"class":"form-control is-valid","placeholder":"Enter Portfolio Site"}))
-    bio = forms.CharField(widget = forms.TextInput(attrs = {"class":"form-control is-valid", "id":"exampleInputUserName1","placeholder":"Enter Bio"}))
+   # portfolio_site = forms.URLField(widget = forms.URLInput(attrs = {"class":"form-control is-valid","placeholder":"Enter Portfolio Site"}))
+   # bio = forms.CharField(widget = forms.TextInput(attrs = {"class":"form-control is-valid", "id":"exampleInputUserName1","placeholder":"Enter Bio"}))
     gender = forms.ChoiceField(choices=GENDER_CHOICES, widget=forms.RadioSelect())
     class Meta():
         model  = UserProfileInfo
@@ -54,6 +54,7 @@ class CommentPostForm(forms.ModelForm):
         model = CommentPost
         fields = ('comment',)
         exclude = ('title','publisher','pub_date',)
+
 
 class PostSubmissionForm(forms.ModelForm):
     POST_CHOICES = ((0, 'Image'),(1, 'Video'),(2,'Audio'))   

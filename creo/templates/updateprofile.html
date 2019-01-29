@@ -20,14 +20,14 @@
             </div>
 
             <div class="btn-group" role="group" aria-label="Basic example">
-            <form action="/creo/delete/{{u.pk}}">
-                    <input type="submit" class="btn btn-danger" value="Delete">
+            <form action="/creo/delete/{{u.pk}}" style="margin-bottom: 10px;">
+                    <input type="submit" class="btn btn-danger" value="Delete" style="background-color:#444951; border-color: #dbd9d9">
             </form>
-            <form action="/creo/userupdate/{{u.pk}}">
-                <input type="submit" class="btn btn-info" value="Update Email">
+            <form action="/creo/userupdate/{{u.pk}}" style="margin-bottom: 10px;">
+                <input type="submit" class="btn btn-info" value="Update Info" style="background-color:#444951; border-color: #dbd9d9 ">
             </form>
-            <form action="/creo/portfolioupdate/{{alluser.pk}}">
-                <input type="submit" class="btn btn-info" value="Update Portfolio">
+            <form action="/creo/portfolioupdate/{{alluser.pk}}" style="margin-bottom: 10px;">
+                <input type="submit" class="btn btn-info" value="Update Portfolio" style="background-color:#444951 ;border-color: #dbd9d9;">
             </form>
             </div>
 {% endblock %}

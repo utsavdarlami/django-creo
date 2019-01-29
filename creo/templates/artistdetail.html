@@ -14,17 +14,17 @@
             {%endif%}-->
             <div style="text-align: center;">
             <div class="media" style="align:center;">
-                  <h1>I'm {{artistinfo.username}}</h1>
+                  <h1>I'm {{artistinfo.first_name}}</h1>
                   <img class="mr-3" src="{{artistinfo2.profile_pic.url}}" alt="user profile pic" max-width="250"height="250" style="box-shadow: 1px 1px 10px 4.5px #444951;">
                   <div class="media-body">              
                         <h4 style="padding-top:5px;"><a href={{artistinfo2.portfolio_site}}>Portfolio Site</a></h4>
                         <h4>E-mail: {{artistinfo.email}}</h4>
-                        </div>
+                  </div>
             </div>
             </div>
                   {%if artistinfo2.bio%}
                   <div style="text-align:center; padding-top:60px;">
-                        <h2 style="display: inline;">About Me:</h2><p style="font-size:15px;">{{artistinfo2.bio}}</p>
+                        <h2 style="display: inline;font-family: 'Roboto', sans-serif;">About Me:</h2><p style="font-size:15px;">{{artistinfo2.bio}}</p>
                   </div>
                   {%endif%}
                   {%if artistinfo2.resume%}
@@ -40,7 +40,7 @@
             
             {% if artistposts %}
             <div style="text-align:center; padding-top:60px;">
-            <h2 style="display: inline;">Work:</h2>
+            <h2 style="display: inline;font-family: 'Roboto', sans-serif;">Posts:</h2>
             {% for submission in artistposts %}
             <div class="row">
          {%if submission.post_type == 1 %}

@@ -16,14 +16,18 @@
 {% for submission in latest_submissions %}
 <div class="row">
       {%if submission.post_type == 0 %}
-      <div class="edit1">
+      <div class="edit1" >
                   <a href="{% url 'detailpost' submission.id %}">
-                        <img id="img1" src="{{ submission.content.url }}/">
-                        <div class="overlay">{{submission.title}}</div>
-                  </a></div>
-            
+                        <div class="file-container" >
+                              <img id="img1" src="{{ submission.content.url }}/">
+                              <div class="overlay">{{submission.title}}</div>
+                        </div>
+                  </a>                 
+      </div>           
       {%endif%}
 </div>
+
+
 {% endfor %}
 {% else %}
 <p>No submissions are available.</p>

@@ -29,7 +29,6 @@ def testurl(request,slug = 'mostviewed'):
         latest_submissions = PostSubmission.objects.order_by('-pub_date','-like_count','-view_count')
     else:
         latest_submissions = PostSubmission.objects.order_by('-view_count','-like_count','-pub_date')
-
     # template = loader.get_template('images/index.html')
     context = { 'latest_submissions': latest_submissions }
     return render(request, 'testurl.html', context)
@@ -96,7 +95,7 @@ class UserDeleteView(DeleteView):
     success_url = reverse_lazy("index")
     #logout(request)
 class UserUpdateView(UpdateView):
-    fields = ('email',)
+    fields = ('email','first_name','last_name')
     model = User
     success_url = reverse_lazy("profile")
 class UserProfileUpdateView(UpdateView):
@@ -211,6 +210,7 @@ def detailpost(request,id):
         form = CommentPostForm()
         return render(request, 'detail.html', {'submission': submission,'comments':comments, 'form': form})
     #return render(request, 'detail.html', {'submission': submission,})#, 'form': form})
+
 def artistdetail(request,publisher):
     artistinfo = get_object_or_404(User,username=publisher)
     artistinfo2 = get_object_or_404(UserProfileInfo,user_id=artistinfo.id)

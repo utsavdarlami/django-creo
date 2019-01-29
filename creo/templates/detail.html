@@ -18,12 +18,7 @@
     <div class="edit3">
     <h1 id="font1">{{submission.title}}</h1>
     <p id="box1" style="font-family:'Noto Serif', serif; font-weight:bold; font-size:15px;">Date : {{submission.pub_date|date:"D d M Y"}}</p>
-    {%if liked%}
-        {%if liked.like == True%}
-        <h5>By : <a href="{%url 'artistdetail' submission.publisher %}">{{submission.publisher}}</h5></a>
-        {%endif%}
-    {%endif%}
-
+ 
     {%if submission.post_type == 1 %}
     <video id="video1" controls>
                 <source src="{{ submission.content.url }}/" type="video/mp4">
@@ -39,11 +34,26 @@
 
     {%if submission.post_type == 2 %}
    
-        <audio controls>
-            <source src="{{ submission.content.url }}/" type="audio/ogg" style="max-width:100%; height:auto;">
-                <source src="{{ submission.content.url }}/" type="audio/mpeg" style="max-width:100%; height:auto;">
-                Your browser does not support the audio tag.
-        </audio>
+        <div class="file-container">
+            <div class="container" style="text-align: center; border:2px solid black; padding-top:50px;">
+                      <span style=" display: inline-block;" >
+                            <i class="fas fa-music fa-10x"></i>
+                      </span>
+                      <p></p>
+            <div style="text-align: center;">
+                <div class="audio-container" style=" display: inline-block;padding-top: 20px; padding-bottom: 20px;">
+                     <div class="audio-box-container">
+                            <audio controls  >
+                                  <source src="{{ submission.content.url }}/" type="audio/ogg" style="max-width:100%; height:auto;">
+                                  <source src="{{ submission.content.url }}/" type="audio/mpeg" style="max-width:100%; height:auto;">
+                                  Your browser does not support the audio tag.
+                            </audio>
+                      </div>
+                </div>       
+            </div>
+            </div> 
+        </div>
+
         
     {%endif%}
 
@@ -54,76 +64,83 @@
     
     <div style="margin-bottom:10px; margin-top: 10px;">
         {%if liked%}
-            {%if liked.like == True%}
-                <a href="{%url 'addlike' submission.id%}">
-                    <span style="font-size: 2em;color: #d82b2b;">
-                        <i class="fas fa-heart"></i>
-                    </span>
-                </a>
-            {%endif%}
-            {%if liked.like == False%}
-                <a href="{%url 'addlike' submission.id%}">
-                    <span style="font-size: 2em;color: #d82b2b;">
-    
-                    <i class="far fa-heart"></i>
-                </span>
-    
-                </a>
-            {%endif%}
-        {%endif%}
-    
-        {%if not liked%}
-        <a href="{%url 'addlike' submission.id%}">
+        {%if liked.like == True%}
+            <a href="{%url 'addlike' submission.id%}">
                 <span style="font-size: 2em;color: #d82b2b;">
-    
+                    <i class="fas fa-heart"></i>
+                </span>
+            </a>
+            <p style="display:inline; font-size: 16px; font-weight: bold;"> {{submission.like_count}} likes</p>
+        {%endif%}
+        {%if liked.like == False%}
+            <a href="{%url 'addlike' submission.id%}">
+                <span style="font-size: 2em;color: #d82b2b;">
+
                 <i class="far fa-heart"></i>
             </span>
-    
             </a>
+            <p style="display:inline; font-size: 16px; font-weight: bold;"> {{submission.like_count}} likes</p>
         {%endif%}
+    {%endif%}
+
+    {%if not liked%}
+    <a href="{%url 'addlike' submission.id%}">
+            <span style="font-size: 2em;color: #d82b2b;">
+
+            <i class="far fa-heart"></i>
+        </span>
+     </a>
+     <p style="display:inline; font-size: 16px; font-weight: bold;"> {{submission.like_count}} likes</p>
+
+    {%endif%}
+
         <!--saving button-->
         {%if saved%}
             {%if saved.save_post == True%}
-                <a href="{%url 'saved' submission.id%}">
-                    <span style="font-size: 2em;color: #4e4c4c;">
-                        <i class="fas fa-bookmark"></i>
-                    </span>
-                </a>
+                <div class="div" style="display: inline; float:right;">
+                    <a href="{%url 'saved' submission.id%}">
+                        <span style="font-size: 2em;color: #4e4c4c;">
+                            <i class="fas fa-bookmark"></i>
+                        </span>
+                    </a>
+                </div>
             {%endif%}
             {%if saved.save_post == False%}
-                <a href="{%url 'saved' submission.id%}">
-                    <span style="font-size: 2em;color: #4e4c4c;">
-                        <i class="far fa-bookmark"></i>
-                </span>
-    
-                </a>
+                <div class="div" style="display: inline;float: right;">
+                    <a href="{%url 'saved' submission.id%}">
+                        <span style="font-size: 2em;color: #4e4c4c;">
+                            <i class="far fa-bookmark"></i>
+                    </span>
+        
+                    </a>
+                </div>
             {%endif%}
         {%endif%}
-    
         {%if not saved%}
+            <div class="div" style="display: inline;float: right;">
             <a href="{%url 'saved' submission.id%}">
                 <span style="font-size: 2em;color: #4e4c4c;">
                     <i class="far fa-bookmark"></i>
                 </span>    
             </a>
+            </div>
+
         {%endif%}
-
-    </div>
-
-
-    <h5 style="display:inline;">Likes: {{submission.like_count}}</h5>     
-    <h5 style="display:inline; float:right;">Comments:{{submission.comment_count}}</h5>
-    
-    <p style="margin-top:20px;">
-    <label>Your comment:</label>
+        <p style="margin-top:20px;">
+            <p style="font-family: 'Open Sans', sans-serif; font-weight:bold; font-size:18px; display: inline;">Artist:
+                {%if liked.like == True%}
+                <a href="{%url 'artistdetail' submission.publisher %}">{{submission.publisher}}</a>
+                {%endif%}
+        </p>
+    <h4 style=" float:right;font-size: 20px;"><i class="fa fa-comments" style="font-size:20px">{{submission.comment_count}}</i></h4>
     <form action="{% url 'addcomment' submission.id %}" method="post">
+        
     {% csrf_token %}
     {{ form }}
     <br>
     <button type="submit" class="btn btn-success" >Submit</button>
     </form> 
     </p>
-
 
     {%if liked%}
         {%if liked.like == True%}
@@ -138,6 +155,7 @@
         </p>
         {%endif%}
     {%endif%}
+    
     </div>
 </div>
 </div>
@@ -146,19 +164,3 @@
 
 
 {% endblock %}
-<!--
-<label>Your comment</label>
-<form action="{% url 'images:comment' submission.id %}" method="post">
-{% csrf_token %}
-{{ form }}
-<br>
-<input type="submit" value="Submit">
-</form> 
--->
-
-<!--<ul>
-{% for comment in submission.comment_set.all %}
-<li>{{ comment.pub_date }}: {{ comment.comment_text }}</li>
-{% endfor %}
-</ul>
--->
