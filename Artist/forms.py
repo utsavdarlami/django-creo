@@ -42,7 +42,12 @@ class UserProfileInfoUpdateForm(forms.ModelForm):
    )
    # profile_pic= forms.ImageField(widget=PictureWidget)
    # portfolio_site = forms.URLField(widget = forms.URLInput(attrs = {"class":"form-control is-valid","placeholder":"Enter Portfolio Site"}))
-    bio = forms.CharField(widget = forms.TextInput(attrs = {"class":"form-control is-valid", "id":"exampleInputUserName1","placeholder":"Enter Bio"}))
+    bio = forms.CharField(widget = forms.Textarea(attrs = {'rows':6,
+                                    'cols'       :22,
+                                    'style'      :'resize:none;',
+                                    "class"      :"form-control is-valid",
+                                    "id"         :"exampleInputUserName1",
+                                    "placeholder":"Enter Bio"})) 
     gender = forms.ChoiceField(choices=GENDER_CHOICES, widget=forms.RadioSelect())
     class Meta():
         model  = UserProfileInfo
