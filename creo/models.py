@@ -50,7 +50,6 @@ class Likes(models.Model):
     def __str__(self):
         return str(self.publisher)
 
-#Save Post model
 class SavedPost(models.Model):
     post = models.ForeignKey(PostSubmission,on_delete=models.CASCADE,)
     savedby = models.ForeignKey(User,on_delete=models.CASCADE,)

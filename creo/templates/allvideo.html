@@ -16,15 +16,17 @@
 <div class="row">
       {%if submission.post_type == 1 %}
       <div class="edit1">
-      <a href="{% url 'detailpost' submission.id %}">
-      <video id="video1" controls>
-                  <source src="{{ submission.content.url }}/" type="video/mp4">
-                  <source src="{{ submission.content.url }}/" type="video/ogg">
-                  Your browser does not support the video tag.
-      </video>
-      <div class="overlay">{{submission.title}}</div>
-      </a>  
-      </div>          
+                  <a href="{% url 'detailpost' submission.id %}">
+                        <div class="file-container">
+                              <video id="video1" controls>
+                                          <source src="{{ submission.content.url }}/" type="video/mp4">
+                                          <source src="{{ submission.content.url }}/" type="video/ogg">
+                                          Your browser does not support the video tag.
+                              </video>
+                              <div class="overlay">{{submission.title}}</div>
+                        </div>      
+                  </a>  
+            </div>                   
             {%endif%}
       
 </div>

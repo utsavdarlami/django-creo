@@ -8,14 +8,15 @@ from django.http import HttpResponse,HttpResponseRedirect
 from creo.models import UserProfileInfo,PostSubmission,CommentPost,Likes,SavedPost
 from django.contrib import messages
 #importing from  forms.py
-from creo.forms import UserForm,UserProfileInfoForm,CommentPostForm,PostSubmissionForm,UserProfileInfoUpdateForm
+from creo.forms import UserForm,UserProfileInfoForm,CommentPostForm,PostSubmissionForm,UserProfileInfoUpdateForm,ChangePasswordForm
 #importing class views
 from django.views.generic import DeleteView,CreateView,UpdateView
 from django.contrib.auth.models import User
 from django import forms
 #for login and logout
-from django.contrib.auth import authenticate,login,logout
+from django.contrib.auth import authenticate,login,logout,update_session_auth_hash
 from django.contrib.auth.decorators import login_required
+from django.contrib.auth.forms import PasswordChangeForm
 from django.urls import reverse,reverse_lazy
 from django import forms
 
@@ -29,7 +30,6 @@ def testurl(request,slug = 'mostviewed'):
         latest_submissions = PostSubmission.objects.order_by('-pub_date','-like_count','-view_count')
     else:
         latest_submissions = PostSubmission.objects.order_by('-view_count','-like_count','-pub_date')
-
     # template = loader.get_template('images/index.html')
     context = { 'latest_submissions': latest_submissions }
     return render(request, 'testurl.html', context)
@@ -91,19 +91,33 @@ def create_user(request):
     value = {"user_form":user_form,"profile_form":profile_form,"registered":registered}
     return render(request,"createaccount.html",context = value)
 
+def change_password(request,pk):
+    if request.method == 'POST':
+        form = PasswordChangeForm(data=request.POST, user=request.user)
+        if form.is_valid():
+            form.save()
+            return HttpResponseRedirect(reverse('signin'))
+    else:
+        form = PasswordChangeForm(user=request.user)
+        args = {'cp_form': form}
+        return render(request, 'auth/change_password.html', args)
+
 class UserDeleteView(DeleteView):
     model = User
     success_url = reverse_lazy("index")
     #logout(request)
 class UserUpdateView(UpdateView):
-    fields = ('email',)
+    fields = ('email','first_name','last_name')
     model = User
     success_url = reverse_lazy("profile")
+    #  template_name = 'my-book-detail.html'
+    
 class UserProfileUpdateView(UpdateView):
     #fields = ('portfolio_site','profile_pic','bio','resume','gender')
     model = UserProfileInfo
     form_class = UserProfileInfoUpdateForm
     success_url = reverse_lazy("profile")
+    
 class PostFormView(CreateView):
     model = PostSubmission
     success_url = reverse_lazy("index")
@@ -130,12 +144,6 @@ def UpdateProfile(request):
         return render(request,"updateprofile.html",context=alluser)
     else:
         return HttpResponse("Please Login")
-
-'''def homecreo(request):
-    latest_submissions = PostSubmission.objects.order_by('-view_count','-like_count','-pub_date')
-    # template = loader.get_template('images/index.html')
-    context = { 'latest_submissions': latest_submissions }
-    return render(request, 'allindex.html', context)'''
 
 def homecreo(request,slug=None):
     if slug=='mostviewed':    
@@ -237,6 +245,7 @@ def addcomment(request,id):
 
 def addlike(request,id):
     current_submission = get_object_or_404(PostSubmission,pk=id)
+    request.method="POST"
     if request.user.is_authenticated:
         if request.method =="POST":
             if Likes.objects.filter(post = current_submission,publisher=request.user).exists():
@@ -251,6 +260,7 @@ def addlike(request,id):
                     liked.save()
                     current_submission.like_count = F('like_count')+1
                     current_submission.save()
+                    #notify.send(User.objects.get(username=request.user).username, recipient=current_submission.id, verb='Liked Your Post')
             else:
                 like = Likes(post=current_submission,like=True,publisher=request.user)
                 like.save()
@@ -261,11 +271,6 @@ def addlike(request,id):
             return(detailpost(request,id))
     else:
         return(signin(request))
-
-"""def myposts(request):
-    posts = PostSubmission.objects.get(publisher=request.user)"""
-def notification(request):
-    return render(request,"index.html")
 
 def savethispost(request,id):
     current_submission = get_object_or_404(PostSubmission,pk=id)

@@ -6,7 +6,8 @@
                <form method="POST">
                    <input type="submit" class="btn btn-danger" value="Confirm">
                    {%csrf_token%}
-                   <a href="/creo/profile/">Cancel</a>
+                   <button type="Cancel"  class="btn btn-info" formaction="/creo/profile/">Delete</button>
                </form>
         </div>
 {% endblock %}
+

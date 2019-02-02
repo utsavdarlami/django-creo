@@ -1,16 +1,19 @@
+
 .edit1
 {
+  /* box-sizing: border-box; */
+  position: relative;
   max-width:600px;
-  border:5px white;
+  /* border:5px white; */
   border-style:hidden;
-  padding:25px;
-  padding-top:10px;
-  padding-bottom: 60px;
+  padding:10px;
+  /* padding-top:10px; */
+  /* padding-bottom: 60px; */
   margin:50px;
   display: block;
   margin-left: auto;
   margin-right: auto;
-  position: relative;
+  /* position: relative; */
 }
 
 .edit2
@@ -81,14 +84,21 @@
 
 }
 
+.file-container{
+  position: relative;
+  margin-left: auto;
+  margin-right: auto;
+
+}
 .overlay
 {
+  /* box-sizing: border-box; */
   position: absolute; 
-  bottom: 0; 
+  /* bottom: 0;  */
   background: rgb(0, 0, 0);
   background: rgba(0, 0, 0, 0.5); /* Black see-through */
   color: #f1f1f1; 
-  width: 91.7%;
+  width: 100%;
   transition: .5s ease;
   opacity:0;
   color: white;
@@ -97,9 +107,8 @@
   margin-bottom:10px;
   text-align: center;
 }
-
 /* When you mouse over the container, fade in the overlay title */
-.edit1:hover .overlay {
+.file-container:hover .overlay {
   opacity: 1;
 }
 
@@ -121,4 +130,8 @@
   border: 1px solid whitesmoke;
   padding: 10px;
   box-shadow: #888888;
+}
+
+.audio-container{
+  box-sizing: border-box;
 }

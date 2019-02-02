@@ -1,31 +1,24 @@
-#h1first{
-	font-family: 'ZCOOL KuaiLe', cursive;
-}
+ #div1
+      {
+        position: relative;
+        border: 1px solid #121416;
+        background-color:#121416;
+        color:white;
+        text-align: center;
+        font-family: 'ZCOOL KuaiLe', cursive;
+      }
 
-body{
-	background-color: #121416;
-}
-
-
-
-.style{
-	display: table-cell;
-   text-align: center;
-   vertical-align: middle;
-	background-color: #121416;
-	width: 300px;
-	border:3px solid white;
-	padding: 25px;
-	margin: 25px;
-	color: white;
-}
-
-.style1{
-	padding-left: 600px;
-	padding-bottom: 100px;
-	padding-top: 100px;
-}
-
-.container{
-	padding-bottom: 10px;
-}
+      nav.navbar
+      {
+        top:0;
+        position: sticky; 
+        background-color: rgb(72, 112, 32);
+        color: black;
+        opacity: 5;
+        border: 1px solid #121416;
+        border-radius: 10px;
+      }
+      .first{
+      	padding-left: 100px;
+      	padding-right: 100px;
+      }

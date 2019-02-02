@@ -25,7 +25,7 @@ SECRET_KEY = '2-u(l#v-7kka5m=$$==gtopavr#(6il1-4xc6c7%j)pk7r+2xh'
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = ['0.0.0.0','127.0.0.1','creoverse.herokuapp.com']
+ALLOWED_HOSTS = ['0.0.0.0','127.0.0.1','creoverse.herokuapp.com','192.168.0.116','172.17.20.161','172.17.1.57','192.168.1.66','192.168.1.75']
 
 
 # Application definition

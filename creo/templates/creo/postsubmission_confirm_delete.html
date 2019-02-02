@@ -5,9 +5,9 @@
     Are You Sure You Want To Delete This Post<span><h6>Note : It cannot be restored later</h6></span>
         <form method="POST">
             <input type="submit" class="btn btn-danger" value="Confirm">
-                {%csrf_token%}
-                <a href="/creo/posts/{{postsubmission.id}}">Cancel</a>
-         </form>
+            {%csrf_token%}
+            <button type="Cancel"  class="btn btn-info" formaction="/creo/posts/{{postsubmission.id}}">Cancel</button>
+        </form>
     <div class="edit3">
     <h1 id="font1">{{postsubmission.title}}</h1>
     <p id="box1" style="font-family:'Noto Serif', serif; font-weight:bold; font-size:15px;">Date : {{postsubmission.pub_date|date:"D d M Y"}}</p>

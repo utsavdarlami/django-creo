@@ -11,18 +11,21 @@
     <link rel="stylesheet" type="text/css" href="{% static '/css/logsign.css' %}">
 
 	<meta name="viewport" content="width=device-width, initial-scale=1">
-	
-  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
-  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
-  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
-  <link href="https://fonts.googleapis.com/css?family=ZCOOL+KuaiLe" rel="stylesheet">
-  <link rel="icon"  href="/media/image/icon/Ctitle.png">
-  <link href="https://fonts.googleapis.com/css?family=Noto+Serif" rel="stylesheet">
-  <link href="https://fonts.googleapis.com/css?family=Didact+Gothic" rel="stylesheet">
-  <link href="https://fonts.googleapis.com/css?family=Staatliches" rel="stylesheet">
-  <link href="https://fonts.googleapis.com/css?family=Open+Sans" rel="stylesheet">
-  <link href="https://fonts.googleapis.com/css?family=Roboto" rel="stylesheet">
-  <link href='http://fonts.googleapis.com/css?family=Arizonia' rel='stylesheet' type='text/css'>
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.5.0/css/all.css" integrity="sha384-B4dIYHKNBt8Bc12p+WXckhzcICo0wtJAoU8YZTY5qE0Id1GSseTk6S+L3BlXeVIU" crossorigin="anonymous">
+
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+    <link href="https://fonts.googleapis.com/css?family=ZCOOL+KuaiLe" rel="stylesheet">
+    <link rel="icon"  href="/media/image/icon/Ctitle.png">
+    <link href="https://fonts.googleapis.com/css?family=Noto+Serif" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Didact+Gothic" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Staatliches" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Open+Sans" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Roboto" rel="stylesheet">
+    <link href='http://fonts.googleapis.com/css?family=Arizonia' rel='stylesheet' type='text/css'>
   
 
 
@@ -31,7 +34,7 @@
 </head>
 
 
-<body style="background-color:#444951;">
+<body style="background-color:#444951; position: relative;">
     <nav class="navbar navbar-default narvbar-brand navbar-fixed-top" style="-webkit-border-radius: 0; -moz-border-radius: 0; border-radius: 0; background-color: #2f3238; min-height:55px;">    
         <div class="container-fluid abc">
                 <div class="navbar-header">
@@ -40,15 +43,22 @@
                           <span class="icon-bar"></span>
                           <span class="icon-bar"></span>                        
                         </button>
+                        <a href="{%url 'index'%}">
+                                <span style="color: whitesmoke;">
+                                    <!-- <div class="creo-brand-container"> -->
+                                    <h1 style="display: inline; border-right: 2px solid whitesmoke; padding-right: 20px;"><img src="/media/image/icon/creohome.jpg" width="90px" style=" padding-top:15px;"></h1></i>
+                                    <!-- </div> -->
+                                </span>
+                              </a>
                       </div>
 
             <div class="collapse navbar-collapse" id="myNavbar">
             <ul class="nav navbar-nav">
-                    <li><a href="{%url 'index'%}">
+                    <!-- <li><a href="{%url 'index'%}">
                             <span style="color: whitesmoke;">
                                 <h1 style="display: inline; border-right: 2px solid whitesmoke; padding-right: 20px;"><img src="/media/image/icon/creohome.jpg" width="90px"></h1></i>
                             </span>
-                          </a></li>
+                          </a></li> -->
                           <li><a href=" {% url 'allimage' %} ">
                             <span style="font-size: 1.2em; color: whitesmoke;">
                                 <i class="fas fa-images" style="padding-top:30px;" ><p style="font-family: 'Open Sans', sans-serif; display: inline; padding-left: 5px;">Photos</p></i>
@@ -112,10 +122,11 @@
 
         <div class="container">
         {%block contents%}
-        
+    
         {%endblock%}
         </div>
 
+        
 </body>
 </html>
 
