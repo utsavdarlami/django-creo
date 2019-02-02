@@ -29,7 +29,6 @@ not completed
 │   │   ├── createaccount.html
 │   │   ├── profile.html
 │   │   ├── savedpost.html
-│   │   ├── testurl.html
 │   │   └── updateprofile.html
 │   ├── tests.py
 │   ├── urls.py
@@ -75,10 +74,6 @@ not completed
 │   │   ├── Posts
 │   │   │   ├── postsubmission_confirm_delete.html
 │   │   │   └── postsubmission_form.html
-│   │   ├── profile.html
-│   │   ├── testurl.html
-│   │   ├── updateprofile.html
-│   │   └── user.html
 │   ├── tests.py
 │   ├── urls.py
 │   └── views.py
@@ -93,7 +88,6 @@ not completed
 └── templates
     ├── base.html
     ├── footer.html
-    ├── home.html
     ├── index.html
     └── signin.html
 
