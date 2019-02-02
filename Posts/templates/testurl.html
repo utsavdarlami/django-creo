@@ -1,0 +1,64 @@
+{%extends "base.html"%}
+{%block contents%}
+    <!-- Content for the Body -->
+        <div class="jumbotron" style=" margin:auto;">
+                <nav class="navbar navbar-default">
+                        <div class="container-fluid"  style="background-color:#EEEEEE";>
+                          <!-- Brand and toggle get grouped for better mobile display -->      
+                          <!-- Collect the nav links, forms, and other content for toggling -->
+                          <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+                            <ul class="nav navbar-nav navbar-right">
+                              <li class="dropdown">
+                                <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Filter<span class="caret"></span></a>
+                                <ul class="dropdown-menu">
+                                  <li><a href="{%url 'testurl' slug='mostview' %}">Most Viewd</a></li>
+                                  <li><a href="{%url 'testurl' slug='newest'%}">New</a></li>
+                                  <li><a href="{%url 'testurl' slug='mostliked'%}">Most Liked</a></li>
+                                </ul>
+                              </li>
+                            </ul>
+                          </div><!-- /.navbar-collapse -->
+                        </div><!-- /.container-fluid -->
+                </nav>
+                {% if latest_submissions %}
+                    <div class="container" style="border:5px solid black; padding: 5px;">
+                        <h1 style="border-bottom: 2px solid black;">Photos</h1>                    
+                        <div class="rows"> 
+                        {% for submission in latest_submissions %}
+                              {%if submission.post_type == 0 %}
+                                <div class="column">
+                                  <a href="{% url 'detailpost' submission.id %}">
+                                  <img src="{{ submission.content.url }}/"></a>
+                                </div>
+                              {%endif%}
+                              {%if submission.post_type == 1 %}
+                                <div class="column">
+                                  <a href="{% url 'detailpost' submission.id %}">
+                                    <video id="video1" controls>
+                                                <source src="{{ submission.content.url }}/" type="video/mp4">
+                                                <source src="{{ submission.content.url }}/" type="video/ogg">
+                                                Your browser does not support the video tag.
+                                    </video>
+                                    </a>                                       
+                                </div>
+                              {%endif%}
+                              {%if submission.post_type == 2 %}
+                                <div class="column">
+                                  <a href="{% url 'detailpost' submission.id %}">
+                                                <audio controls >
+                                                            <source src="{{ submission.content.url }}/" type="audio/ogg" style="max-width:100%; height:auto;">
+                                                            <source src="{{ submission.content.url }}/" type="audio/mpeg" style="max-width:100%; height:auto;">
+                                                            Your browser does not support the audio tag.
+                                                </audio>
+                                  </a>                                
+                              </div>
+                              {%endif%}
+                        {% endfor %}
+                      </div>
+                    </div>
+                {% else %}
+                <p>No submissions are available.</p>
+                {% endif %}
+            </div>
+{% endblock %}
+          
