@@ -4,7 +4,14 @@ from Posts.models import CommentPost,PostSubmission
 
 
 class CommentPostForm(forms.ModelForm):
-    comment= forms.CharField(label='', max_length=500, widget=forms.Textarea(attrs = {"class":"form-control col-15","rows":3,"cols":20}))
+    comment= forms.CharField(label='',max_length=500,
+                            widget=forms.Textarea(
+                            attrs = {"class"     :"form-control col-15",
+                                    'rows'       :3,
+                                    'cols'       :22,
+                                    'style'      :'resize:none;',}
+                                )
+                        )
     class Meta():
         model = CommentPost
         fields = ('comment',)
