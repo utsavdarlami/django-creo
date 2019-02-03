@@ -36,6 +36,9 @@ def testurl(request,slug = 'mostviewed'):
 def index(request):
     return render(request,"index.html")
 
+def aboutus(request):
+    return render(request,"about.html")
+
 def signin(request):
     if request.method == "POST":
         username = request.POST.get('Username')
