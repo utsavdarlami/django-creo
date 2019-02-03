@@ -32,6 +32,7 @@ urlpatterns = [
     path('admin/', admin.site.urls),
     path('',pv.homecreo,name="index"),#calls homecreo function of views.py
     path('signin/',av.signin,name="signin"),#calls singin  function of views.py 
+    path('aboutus/',av.aboutus,name="aboutus"),
     path('artist/',include('Artist.urls')),#url for app =creo
     path('posts/',include('Posts.urls')),#url for app =creo
 ]+ static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
