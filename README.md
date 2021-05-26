@@ -1,5 +1,7 @@
 # django-creo
 creo  https://creoverse.herokuapp.com/
+
+New creo - https://github.com/utsavdarlami/creoV2
     
     image,video and art sharing platform
     * *Like The Posts to Know about the Artist*
